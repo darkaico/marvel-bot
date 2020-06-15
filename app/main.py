@@ -44,9 +44,9 @@ class MarvelBot(LoggerMixin):
                 file=marvel_character.thumbnail.image_data
             )
 
-            self.logger.info("Sleeping 1 hour...")
+            self.logger.info("Sleeping 4 hour...")
 
-            time.sleep(60 * 60 * 1)
+            time.sleep(60 * 60 * 4)
 
 
 if __name__ == "__main__":
