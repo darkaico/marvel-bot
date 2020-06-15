@@ -1,7 +1,7 @@
 import tweepy
 
 
-class Twitter:
+class TwitterAPI:
 
     def __init__(
         self,
@@ -15,5 +15,12 @@ class Twitter:
 
         self.api = tweepy.API(auth)
 
-    def update_status(text):
+    def update_status(self, text):
         self.api.update_status(text)
+
+    def update_with_media(self, status, filename, file):
+        self.api.update_with_media(
+            filename=filename,
+            status=status,
+            file=file
+        )
