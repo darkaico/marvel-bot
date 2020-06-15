@@ -10,6 +10,9 @@ class ImageDTO:
     path: str
     extension: str
 
+    def is_available(self):
+        return 'image_not_available' not in self.name
+
     @property
     def url(self):
         return f'{self.path}.{self.extension}'
@@ -33,9 +36,12 @@ class CharacterDTO:
     description: str
     thumbnail: ImageDTO
 
+    def __str__(self):
+        return f'{self.id} - {self.name}'
+
     @property
     def short_description(self):
-        return (self.description[:100] + '..') if len(self.description) > 100 else self.description
+        return (self.description[:200] + '..') if len(self.description) > 200 else self.description
 
     @property
     def twitter_status(self):
