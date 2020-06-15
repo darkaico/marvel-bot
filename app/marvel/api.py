@@ -4,11 +4,13 @@ import time
 
 import requests
 
+from app.marvel import builders
+
 
 class MarvelAPI:
 
     BASE_URL = 'http://gateway.marvel.com/v1/public'
-    # TODO: Figure out how to get this number updated
+    # TODO: Figure out how to get this number properly updated
     CHARACTER_LIMIT = 1493
 
     def __init__(self, public_key, private_key):
@@ -29,4 +31,4 @@ class MarvelAPI:
 
         response = requests.get(random_url)
 
-        return response.json()
+        return builders.build_character_from_api(response.json())
