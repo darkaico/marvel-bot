@@ -28,6 +28,10 @@ class MarvelBot(LoggerMixin, Thread):
             os.getenv("TW_ACCESS_TOKEN_SECRET"),
         )
 
+    @property
+    def tweet_time(self):
+        return 60 * 60 * 2
+
     def get_character(self):
         marvel_character = self.marvel_api.get_random_character()
         if marvel_character.thumbnail.is_available():
@@ -49,7 +53,7 @@ class MarvelBot(LoggerMixin, Thread):
 
             self.logger.info("sleeping 4 hours...")
 
-            time.sleep(10)
+            time.sleep(self.tweet_time)
 
 
 if __name__ == "__main__":
