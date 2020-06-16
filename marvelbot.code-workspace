@@ -1,0 +1,19 @@
+{
+	"folders": [
+	  {
+		"path": "."
+	  }
+	],
+	"settings": {
+	  "editor.formatOnSave": true,
+	  "python.pythonPath": "venv/bin/python3",
+	  "python.autoComplete.extraPaths": ["./"],
+	  "editor.rulers": [120],
+	  "python.formatting.autopep8Args": ["--max-line-length=120"],
+	  "[python]": {
+		"editor.codeActionsOnSave": {
+		  "source.organizeImports": true
+		}
+	  }
+	}
+  }

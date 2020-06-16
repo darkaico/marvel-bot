@@ -1,5 +1,6 @@
 import os
 import time
+from threading import Thread
 
 from dotenv import load_dotenv
 
@@ -10,9 +11,11 @@ from app.utils.mixins import LoggerMixin
 load_dotenv()
 
 
-class MarvelBot(LoggerMixin):
+class MarvelBot(LoggerMixin, Thread):
 
     def __init__(self):
+        Thread.__init__(self)
+
         self.marvel_api = MarvelAPI(
             public_key=os.getenv("MARVEL_API_KEY"),
             private_key=os.getenv("MARVEL_PRIVATE_KEY")
@@ -44,10 +47,10 @@ class MarvelBot(LoggerMixin):
                 file=marvel_character.thumbnail.image_data
             )
 
-            self.logger.info("Sleeping 4 hour...")
+            self.logger.info("sleeping 4 hours...")
 
-            time.sleep(60 * 60 * 4)
+            time.sleep(10)
 
 
 if __name__ == "__main__":
-    MarvelBot().run()
+    MarvelBot().start()
