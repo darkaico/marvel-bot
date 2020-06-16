@@ -1,5 +1,8 @@
+build:
+	docker build -t marvel-bot .
+
 start:
-	python -m app.main
+	docker run --name marvel-bot
 
 test:
-	python -m pytest
+	docker exec marvelbot python -m pytest
