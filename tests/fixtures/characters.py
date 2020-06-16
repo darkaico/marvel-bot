@@ -4,12 +4,12 @@ import os
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
-def get_wolverine_response():
+def get_wolverine_list_response():
 
-    with open(f'{CURRENT_DIR}/wolverine_response.json') as f:
-        wolverine_response = json.load(f)
+    with open(f'{CURRENT_DIR}/wolverine_list_response.json') as f:
+        wolverine_list_response = json.load(f)
 
-    return wolverine_response
+    return wolverine_list_response
 
 
 def get_character_no_image_response():

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from app.marvel.constants import LinkTypeEnum
 from app.utils import file_utils
 
 
@@ -23,3 +24,14 @@ class ImageDTO:
     @property
     def image_data(self):
         return file_utils.build_image_from_url(self.url)
+
+
+@dataclass
+class MarvelLinkDTO:
+
+    type: str
+    url: str
+
+    @property
+    def link_type(self):
+        return LinkTypeEnum(self.type)

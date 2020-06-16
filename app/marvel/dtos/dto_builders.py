@@ -1,4 +1,7 @@
-from dacite import from_dict
+from dacite import (
+    Config,
+    from_dict
+)
 
 from app.marvel.dtos import (
     CharacterDTO,
@@ -9,7 +12,10 @@ from app.marvel.dtos import (
 def build_character_from_api_response(api_response: dict):
     character_data = api_response['data']['results'][0]
 
-    return from_dict(data_class=CharacterDTO, data=character_data)
+    return from_dict(
+        data_class=CharacterDTO,
+        data=character_data,
+    )
 
 
 def build_comics_from_api_response(comics_response: dict):

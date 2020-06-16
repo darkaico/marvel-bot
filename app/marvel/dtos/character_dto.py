@@ -1,9 +1,16 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import (
+    List,
+    Optional
+)
 
+from app.marvel.constants import LinkTypeEnum
 from app.utils import string_utils
 
-from .common_dto import ImageDTO
+from .common_dto import (
+    ImageDTO,
+    MarvelLinkDTO
+)
 
 
 @dataclass
@@ -15,11 +22,19 @@ class CharacterComicDTO:
 @dataclass
 class CharacterDTO:
 
+    _marvel_links_by_type = {}
+
     id: int
     name: str
     thumbnail: ImageDTO
     comics: CharacterComicDTO
+    urls: Optional[List[MarvelLinkDTO]]
     description: Optional[str] = None
+
+    def __post_init__(self):
+        # Set marvel links by type
+        for marvel_link in self.urls:
+            self._marvel_links_by_type[marvel_link.link_type] = marvel_link
 
     def __str__(self):
         return f'{self.id} - {self.name}'
@@ -30,16 +45,27 @@ class CharacterDTO:
 
     @property
     def twitter_status(self):
-        status = f'Did you know about {self.name} ?'
-        if self.description:
-            status += f'\n{self.short_description}'
+        status = f'Did you know about {self.name} ?\n'
+
+        if self.wiki_link:
+            status += f'\n* Wiki: {self.wiki_link.url}'
+
+        if self.detail_link:
+            status += f'\n* Details: {self.detail_link.url}'
+
+        if self.comic_link:
+            status += f'\n* Comics: {self.comic_link.url}'
 
         return status
 
     @property
-    def twitter_summary(self):
-        summary = f'* Available in:\n'
-        summary *= f'* {self.comics.available} comics.\n'
-        summary *= f'* {self.comics.available} series.\n'
+    def detail_link(self):
+        return self._marvel_links_by_type.get(LinkTypeEnum.DETAIL)
 
-        return summary
+    @property
+    def wiki_link(self):
+        return self._marvel_links_by_type.get(LinkTypeEnum.WIKI)
+
+    @property
+    def comic_link(self):
+        return self._marvel_links_by_type.get(LinkTypeEnum.COMIC)
