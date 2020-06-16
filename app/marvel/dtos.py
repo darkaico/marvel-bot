@@ -1,7 +1,6 @@
 from dataclasses import dataclass
-from io import BytesIO
 
-import requests
+from app.utils import file_utils
 
 
 @dataclass
@@ -23,9 +22,7 @@ class ImageDTO:
 
     @property
     def image_data(self):
-        response = requests.get(self.url)
-
-        return BytesIO(response.content)
+        return file_utils.build_image_from_url(self.url)
 
 
 @dataclass
