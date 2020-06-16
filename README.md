@@ -1,3 +1,5 @@
+https://github.com/darkaico/marvel-bot/workflows/CI/badge.svg
+
 # Marvel Bot
 
 Simple bot that fetch data from [Marvel API](https://developer.marvel.com/docs#!/public)
