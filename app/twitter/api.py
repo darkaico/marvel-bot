@@ -15,12 +15,17 @@ class TwitterAPI:
 
         self.api = tweepy.API(auth)
 
-    def update_status(self, text):
-        self.api.update_status(text)
+    def update_status(self, status, in_reply_to_status_id=None):
+        return self.api.update_status(
+            status,
+            in_reply_to_status_id=in_reply_to_status_id,
+        )
 
-    def update_with_media(self, status, filename, file):
-        self.api.update_with_media(
+    def update_with_media(self, status, filename, file, in_reply_to_status_id=None):
+
+        return self.api.update_with_media(
             filename=filename,
             status=status,
-            file=file
+            file=file,
+            in_reply_to_status_id=in_reply_to_status_id
         )

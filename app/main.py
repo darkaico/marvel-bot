@@ -32,6 +32,10 @@ class MarvelBot(LoggerMixin, Thread):
     def tweet_time(self):
         return 60 * 60 * 2
 
+    @property
+    def comics_limit(self):
+        return 4
+
     def get_character(self):
         marvel_character = self.marvel_api.get_random_character()
         if marvel_character.thumbnail.is_available():
@@ -39,19 +43,33 @@ class MarvelBot(LoggerMixin, Thread):
 
         return self.get_character()
 
+    def get_comics(self, character_id: int):
+        return self.marvel_api.get_character_comics(character_id, limit=self.comics_limit)
+
     def run(self):
         while True:
             marvel_character = self.get_character()
+            comics = self.get_comics(marvel_character.id)
 
             self.logger.info(f'Tweeting about: {marvel_character}')
 
-            self.twitter_api.update_with_media(
+            tw_status = self.twitter_api.update_with_media(
                 status=marvel_character.twitter_status,
                 filename=marvel_character.thumbnail.name,
                 file=marvel_character.thumbnail.image_data
             )
 
-            self.logger.info("sleeping 4 hours...")
+            last_status_id = tw_status.id
+            for comic in comics:
+                thread_status = self.twitter_api.update_with_media(
+                    status=comic.twitter_status,
+                    filename=comic.thumbnail.name,
+                    file=comic.thumbnail.image_data,
+                    in_reply_to_status_id=last_status_id
+                )
+                last_status_id = thread_status.id
+
+            self.logger.info("sleeping...")
 
             time.sleep(self.tweet_time)
 
