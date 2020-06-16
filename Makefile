@@ -1,7 +1,7 @@
 build:
 	docker build -t marvel-bot .
 
-delete_container:
+reset:
 	docker rm marvelbot
 
 start:

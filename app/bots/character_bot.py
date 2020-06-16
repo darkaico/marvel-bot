@@ -26,7 +26,7 @@ class CharacterBot(LoggerMixin, Thread):
 
     @property
     def tweet_time(self):
-        return 60 * 60 * 2
+        return 60 * 60 * 4
 
     def get_character(self):
         marvel_character = self.marvel_api.get_random_character()
