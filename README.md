@@ -1,4 +1,4 @@
-https://github.com/darkaico/marvel-bot/workflows/CI/badge.svg
+![alt text](https://github.com/darkaico/marvel-bot/workflows/CI/badge.svg)
 
 # Marvel Bot
 
