@@ -5,7 +5,7 @@ import time
 import requests
 
 from app import marvel as marvel_constants
-from app.marvel import builders
+from app.marvel.dtos import dto_builders
 
 
 class MarvelAPI:
@@ -30,11 +30,11 @@ class MarvelAPI:
 
         response = requests.get(random_url)
 
-        return builders.build_character_from_api_response(response.json())
+        return dto_builders.build_character_from_api_response(response.json())
 
     def get_character_comics(self, character_id: int, limit: int = marvel_constants.DEFAULT_API_LIMIT):
         comics_url = self._build_url(f'characters/{character_id}/comics', limit=limit)
 
         response = requests.get(comics_url)
 
-        return builders.build_comics_from_api_response(response.json())
+        return dto_builders.build_comics_from_api_response(response.json())

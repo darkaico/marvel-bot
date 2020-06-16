@@ -29,3 +29,9 @@ class TwitterAPI:
             file=file,
             in_reply_to_status_id=in_reply_to_status_id
         )
+
+    def get_timeline(self):
+        return self.api.user_timeline()
+
+    def delete_status(self, status_id):
+        self.api.destroy_status(status_id)
