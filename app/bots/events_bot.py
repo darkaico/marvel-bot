@@ -18,7 +18,8 @@ class EventsBot(MarvelBot):
 
             self.logger.info(f'Tweeting about: {marvel_event}')
 
-            tw_status = f'=== {self.weekday} Event ===\n\n'
+            tw_status = f'=== {self.weekday} Event ===\n'
+            tw_status += f'#marvel #eventoftheday\n\n'
             tw_status += marvel_event.twitter_status
 
             self.logger.info(tw_status)
