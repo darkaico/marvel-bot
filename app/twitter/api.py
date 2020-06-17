@@ -33,5 +33,5 @@ class TwitterAPI:
     def get_timeline(self):
         return self.api.user_timeline()
 
-    def delete_status(self, status_id):
-        self.api.destroy_status(status_id)
+    def destroy_status(self, status_id):
+        return self.api.destroy_status(status_id)

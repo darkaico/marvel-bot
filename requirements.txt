@@ -5,3 +5,4 @@ dacite
 pytest
 pytest-cov
 cached-property
+faker
