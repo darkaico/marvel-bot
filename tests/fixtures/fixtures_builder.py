@@ -25,3 +25,10 @@ def get_comics_response():
         comics_response = json.load(f)
 
     return comics_response
+
+
+def get_events_response():
+    with open(f'{CURRENT_DIR}/two_events_response.json') as f:
+        events_response = json.load(f)
+
+    return events_response

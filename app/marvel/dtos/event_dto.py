@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import (
     List,
     Optional
@@ -14,21 +15,16 @@ from .common_dto import (
 
 
 @dataclass
-class CharacterComicDTO:
-
-    available: int
-
-
-@dataclass
-class CharacterDTO:
+class EventDTO:
 
     _marvel_links_by_type = {}
 
     id: int
-    name: str
+    title: str
     thumbnail: ImageDTO
-    comics: CharacterComicDTO
     urls: Optional[List[MarvelLinkDTO]]
+    start: Optional[datetime]
+    end: Optional[datetime]
     description: Optional[str] = None
 
     def __post_init__(self):
@@ -37,7 +33,7 @@ class CharacterDTO:
             self._marvel_links_by_type[marvel_link.link_type] = marvel_link
 
     def __str__(self):
-        return f'{self.id} - {self.name}'
+        return f'{self.id} - {self.title}'
 
     @property
     def short_description(self):
@@ -45,7 +41,7 @@ class CharacterDTO:
 
     @property
     def twitter_status(self):
-        status = f'What do you know about {self.name} ?\n'
+        status = f'What do you know about "{self.title}" ?\n'
 
         if self.wiki_link:
             status += f'\n* Wiki: {self.wiki_link.url}'

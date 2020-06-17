@@ -3,3 +3,4 @@ tweepy
 python-dotenv
 dacite
 pytest
+cached-property
