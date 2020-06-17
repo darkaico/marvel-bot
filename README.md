@@ -1,4 +1,5 @@
-![alt text](https://github.com/darkaico/marvel-bot/workflows/CI/badge.svg)
+[![Build Status](https://travis-ci.org/darkaico/marvel-bot.svg?branch=master)](https://travis-ci.org/darkaico/marvel-bot)
+
 
 # Marvel Bot
 
