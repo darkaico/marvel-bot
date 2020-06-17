@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/darkaico/marvel-bot.svg?branch=master)](https://travis-ci.org/darkaico/marvel-bot)
-[![Coverage Status](https://coveralls.io/repos/github/darkaico/marvel-bot/badge.svg?branch=master)](https://coveralls.io/github/darkaico/marvel-bot?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/darkaico/marvel-bot/badge.svg?branch=master)](https://coveralls.io/github/darkaico/marvel-bot?branch=master&service=github)
 
 # Marvel Bot
 
