@@ -4,6 +4,7 @@ import pytest
 from faker import Faker
 from tweepy import API
 
+from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
 
 fake = Faker()
@@ -56,3 +57,14 @@ def twitter_api_mock(monkeypatch):
     monkeypatch.setattr(API, 'destroy_status', mock_destroy)
 
     return twitter_api
+
+
+@pytest.fixture
+def marvel_api_mock(monkeypatch):
+
+    marvel_api = MarvelAPI(
+        public_key='',
+        private_key='',
+    )
+
+    return marvel_api
