@@ -1,0 +1,458 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2020 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2020 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2020 MARVEL</a>",
+  "etag": "31ce898e9adeefa03141ab6667c4a3126df3c8aa",
+  "data": {
+    "offset": 24,
+    "limit": 1,
+    "total": 75,
+    "count": 1,
+    "results": [
+      {
+        "id": 248,
+        "title": "Fall of the Mutants",
+        "description": "The X-Men battled the Adversary in Dallas, and X-Factor clashed with the Horsemen of Apocalypse in New York, while the New Mutants confronted the insane Ani-Mator on Paradise Island.",
+        "resourceURI": "http://gateway.marvel.com/v1/public/events/248",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/events/248/fall_of_the_mutants?utm_campaign=apiRef&utm_source=ad8e81f48d141af3880dfb3e6e660658"
+          },
+          {
+            "type": "wiki",
+            "url": "http://marvel.com/universe/Fall_of_the_Mutants?utm_campaign=apiRef&utm_source=ad8e81f48d141af3880dfb3e6e660658"
+          }
+        ],
+        "modified": "2013-06-26T14:14:30-0400",
+        "start": "1988-01-10 00:00:00",
+        "end": "2007-01-17 00:00:00",
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/a0/51cb2f521ae35",
+          "extension": "jpg"
+        },
+        "creators": {
+          "available": 44,
+          "collectionURI": "http://gateway.marvel.com/v1/public/events/248/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/12208",
+              "name": "Arthur Adams",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1277",
+              "name": "Bret Blevins",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1279",
+              "name": "Jon Bogdanove",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1298",
+              "name": "June Brigman",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/105",
+              "name": "Sal Buscema",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/12518",
+              "name": "Kerry Gammill",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1301",
+              "name": "Tom Grindberg",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/2697",
+              "name": "Butch Guice",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1252",
+              "name": "Rick Leonardi",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1299",
+              "name": "Steve Lightle",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/11063",
+              "name": "Terry Kevin Austin",
+              "role": "inker"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1172",
+              "name": "Tony Dezuniga",
+              "role": "inker"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1326",
+              "name": "Dan Green",
+              "role": "inker"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/44",
+              "name": "Chris Claremont",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/121",
+              "name": "Peter David",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/9565",
+              "name": "Tom Defalco",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/1297",
+              "name": "Jo Duffy",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/104",
+              "name": "Steve Englehart",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/259",
+              "name": "Mark Gruenwald",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/180",
+              "name": "Kieron Dwyer",
+              "role": "penciler"
+            }
+          ],
+          "returned": 20
+        },
+        "characters": {
+          "available": 42,
+          "collectionURI": "http://gateway.marvel.com/v1/public/events/248/characters",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009156",
+              "name": "Apocalypse"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009159",
+              "name": "Archangel"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009164",
+              "name": "Avalanche"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009175",
+              "name": "Beast"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009548",
+              "name": "Betty Ross"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009187",
+              "name": "Black Panther"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009189",
+              "name": "Black Widow"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009199",
+              "name": "Blob"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009167",
+              "name": "Bruce Banner"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009216",
+              "name": "Caliban"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009220",
+              "name": "Captain America"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1010338",
+              "name": "Captain Marvel (Carol Danvers)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009243",
+              "name": "Colossus"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009255",
+              "name": "Crystal"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009257",
+              "name": "Cyclops"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009262",
+              "name": "Daredevil"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009267",
+              "name": "Dazzler"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009271",
+              "name": "Destiny"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009281",
+              "name": "Doctor Doom"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009298",
+              "name": "Famine"
+            }
+          ],
+          "returned": 20
+        },
+        "stories": {
+          "available": 38,
+          "collectionURI": "http://gateway.marvel.com/v1/public/events/248/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/7280",
+              "name": "Uncanny X-Men 214-228; Annual 10-11; Fantastic Four vs. the X-Men 1-4",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/7281",
+              "name": "Uncanny X-Men 214-228; Annual 10-11; Fantastic Four vs. the X-Men 1-4",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/7344",
+              "name": "Essential X-Factor Vol. 2 (2007) ",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/7345",
+              "name": "X-Factor 17-35; Annual 2; Thor 378",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/12911",
+              "name": "FANTASTIC FOUR (1961) #312",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/12912",
+              "name": "The Turning Point!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/16061",
+              "name": "Daredevil (1964) #252",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/16062",
+              "name": "Ground Zero",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/17943",
+              "name": "CAPTAIN AMERICA (1968) #339",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/17944",
+              "name": "America the Scorched",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/18829",
+              "name": "Incredible Hulk (1962) #340",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21497",
+              "name": "Cover #21497",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21498",
+              "name": "Fang and Claw!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21501",
+              "name": "Cover #21501",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21502",
+              "name": "Suspended Ani-Mation!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21503",
+              "name": "Cover #21503",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/21504",
+              "name": "Our Way!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/22222",
+              "name": "Fall of the Mutants",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/22223",
+              "name": "Masks",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/22224",
+              "name": "Fall of the Mutants",
+              "type": "cover"
+            }
+          ],
+          "returned": 20
+        },
+        "comics": {
+          "available": 15,
+          "collectionURI": "http://gateway.marvel.com/v1/public/events/248/comics",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/7720",
+              "name": "Captain America (1968) #339"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/8243",
+              "name": "Daredevil (1964) #252"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/5786",
+              "name": "Essential X-Factor Vol. 2 (Trade Paperback)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/4091",
+              "name": "Essential X-Men Vol. 7 (Trade Paperback)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/13131",
+              "name": "Fantastic Four (1961) #312"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/9151",
+              "name": "Incredible Hulk (1962) #340"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/10398",
+              "name": "New Mutants (1983) #59"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/10400",
+              "name": "New Mutants (1983) #60"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/10401",
+              "name": "New Mutants (1983) #61"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/13766",
+              "name": "Uncanny X-Men (1963) #225"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/13767",
+              "name": "Uncanny X-Men (1963) #226"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/13768",
+              "name": "Uncanny X-Men (1963) #227"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12240",
+              "name": "X-Factor (1986) #24"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12241",
+              "name": "X-Factor (1986) #25"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/comics/12242",
+              "name": "X-Factor (1986) #26"
+            }
+          ],
+          "returned": 15
+        },
+        "series": {
+          "available": 9,
+          "collectionURI": "http://gateway.marvel.com/v1/public/events/248/series",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1996",
+              "name": "Captain America (1968 - 1996)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2002",
+              "name": "Daredevil (1964 - 1998)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1722",
+              "name": "Essential X-Factor Vol. 2 (2007)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/1688",
+              "name": "Essential X-Men Vol. 7 (2006)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2121",
+              "name": "Fantastic Four (1961 - 1998)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2021",
+              "name": "Incredible Hulk (1962 - 1999)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2055",
+              "name": "New Mutants (1983 - 1991)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2258",
+              "name": "Uncanny X-Men (1963 - 2011)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/series/2098",
+              "name": "X-Factor (1986 - 1998)"
+            }
+          ],
+          "returned": 9
+        },
+        "next": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/events/252",
+          "name": "Inferno"
+        },
+        "previous": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/events/246",
+          "name": "Evolutionary War"
+        }
+      }
+    ]
+  }
+}

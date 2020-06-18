@@ -27,8 +27,31 @@ def get_comics_response():
     return comics_response
 
 
+def get_single_character_response():
+    with open(f'{CURRENT_DIR}/single_character_response.json') as f:
+        response = json.load(f)
+
+    return response
+
+
+def get_single_event_response():
+    with open(f'{CURRENT_DIR}/single_event_response.json') as f:
+        response = json.load(f)
+
+    return response
+
+
 def get_events_response():
     with open(f'{CURRENT_DIR}/two_events_response.json') as f:
         events_response = json.load(f)
 
     return events_response
+
+
+def get_single_resource_response(resource_name):
+    response_by_name = {
+        'characters': get_single_character_response,
+        'events': get_single_event_response,
+    }
+
+    return response_by_name[resource_name]()

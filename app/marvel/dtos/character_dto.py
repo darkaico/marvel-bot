@@ -7,6 +7,7 @@ from typing import (
 from app.marvel.constants import LinkTypeEnum
 from app.utils import string_utils
 
+from .base import MarvelResourceDTO
 from .common_dto import (
     ImageDTO,
     MarvelLinkDTO
@@ -20,11 +21,10 @@ class CharacterComicDTO:
 
 
 @dataclass
-class CharacterDTO:
+class CharacterDTO(MarvelResourceDTO):
 
     _marvel_links_by_type = {}
 
-    id: int
     name: str
     thumbnail: ImageDTO
     comics: CharacterComicDTO
@@ -32,9 +32,10 @@ class CharacterDTO:
     description: Optional[str] = None
 
     def __post_init__(self):
-        # Set marvel links by type
-        for marvel_link in self.urls:
-            self._marvel_links_by_type[marvel_link.link_type] = marvel_link
+        # Set marvel links by type if exists
+        if self.urls:
+            for marvel_link in self.urls:
+                self._marvel_links_by_type[marvel_link.link_type] = marvel_link
 
     def __str__(self):
         return f'{self.id} - {self.name}'

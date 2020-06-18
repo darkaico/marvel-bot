@@ -3,13 +3,13 @@ from typing import Optional
 
 from app.utils import string_utils
 
+from .base import MarvelResourceDTO
 from .common_dto import ImageDTO
 
 
 @dataclass
-class ComicDTO:
+class ComicDTO(MarvelResourceDTO):
 
-    id: int
     title: str
     thumbnail: ImageDTO
     description: Optional[str] = None

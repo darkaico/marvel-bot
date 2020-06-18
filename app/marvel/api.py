@@ -20,43 +20,58 @@ class MarvelAPI:
         self.public_key = public_key
         self.private_key = private_key
 
-    def generate_ts(self) -> float:
+    def _generate_ts(self) -> float:
         return time.time()
 
-    def generate_hash_token(self, ts: float) -> str:
+    def _generate_hash_token(self, ts: float) -> str:
         return hashlib.md5(f'{ts}{self.private_key}{self.public_key}'.encode('utf-8')).hexdigest()
 
-    def _build_base_url(self, resource: str, limit: int = marvel_constants.DEFAULT_API_LIMIT) -> str:
-        ts = self.generate_ts()
-        hash_token = self.generate_hash_token(ts)
+    def _build_api_url(self, resource: str, limit: int = marvel_constants.DEFAULT_API_LIMIT) -> str:
+        ts = self._generate_ts()
+        hash_token = self._generate_hash_token(ts)
 
         return f'{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.public_key}&limit={limit}'
 
-    def _get_random_resource(self, resource_url: str) -> dict:
-        base_url = self._build_base_url(resource_url)
+    def get(self, resource_url: str, params: dict = None) -> dict:
+        return requests.get(resource_url, params=params).json()
 
-        # Get object size
-        base_response = requests.get(base_url, {'limit': 1})
-        object_size = base_response.json()['data']['total']
+    def _generate_random_offset(self, resource_url: str) -> int:
+        """Obtain random offset based on objects total count of specified resource url
+
+        :param resource_url: API Url of the Marvel resource list
+        """
+        # Make a simple call using limit of 1
+        json_response = self.get(resource_url, {'limit': 1})
+        # Obtain total objects for the resource
+        object_size = json_response['data']['total']
         # Generate random offset
         random_offset = random.randint(0, object_size - 1)
 
-        resource_response = requests.get(base_url, params={'limit': 1, 'offset': random_offset})
+        return random_offset
 
-        return resource_response.json()
+    def _get_random_resource_response(self, resource_name: str) -> dict:
+        """Obtain random resource object for the specified resource url
+
+        :param resource_name: Marvel resource name
+        """
+        resource_url = self._build_api_url(resource_name)
+        random_offset = self._generate_random_offset(resource_url)
+        json_resource_response = self.get(resource_url, params={'limit': 1, 'offset': random_offset})
+
+        return json_resource_response
 
     def get_random_character(self) -> CharacterDTO:
-        json_response = self._get_random_resource('characters')
+        json_response = self._get_random_resource_response('characters')
 
         return dto_builders.build_character_from_api_response(json_response)
 
     def get_random_event(self) -> EventDTO:
-        json_response = self._get_random_resource('events')
+        json_response = self._get_random_resource_response('events')
 
         return dto_builders.build_event_from_api_response(json_response)
 
     def get_character_comics(self, character_id: int, limit: int = marvel_constants.DEFAULT_API_LIMIT):
-        comics_url = self._build_base_url(f'characters/{character_id}/comics', limit=limit)
+        comics_url = self._build_api_url(f'characters/{character_id}/comics', limit=limit)
 
         response = requests.get(comics_url)
 

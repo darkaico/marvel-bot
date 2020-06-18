@@ -8,6 +8,7 @@ from typing import (
 from app.marvel.constants import LinkTypeEnum
 from app.utils import string_utils
 
+from .base import MarvelResourceDTO
 from .common_dto import (
     ImageDTO,
     MarvelLinkDTO
@@ -15,11 +16,10 @@ from .common_dto import (
 
 
 @dataclass
-class EventDTO:
+class EventDTO(MarvelResourceDTO):
 
     _marvel_links_by_type = {}
 
-    id: int
     title: str
     thumbnail: ImageDTO
     urls: Optional[List[MarvelLinkDTO]]

@@ -60,7 +60,7 @@ def twitter_api_mock(monkeypatch):
 
 
 @pytest.fixture
-def marvel_api_mock(monkeypatch):
+def marvel_api_mock():
 
     marvel_api = MarvelAPI(
         public_key='',
