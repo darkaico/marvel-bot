@@ -2,6 +2,7 @@ import requests
 
 from app.marvel.dtos import (
     CharacterDTO,
+    ComicDTO,
     EventDTO
 )
 from tests.conftest import MockResponse
@@ -97,3 +98,9 @@ def test_get_random_event(marvel_api_mock, monkeypatch):
     monkeypatch.setattr(marvel_api_mock, '_get_random_resource_response', get_single_resource_response)
 
     assert isinstance(marvel_api_mock.get_random_event(), EventDTO)
+
+
+def test_get_random_comic(marvel_api_mock, monkeypatch):
+    monkeypatch.setattr(marvel_api_mock, '_get_random_resource_response', get_single_resource_response)
+
+    assert isinstance(marvel_api_mock.get_random_comic(), ComicDTO)

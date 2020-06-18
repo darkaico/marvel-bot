@@ -2,6 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class MarvelResourceDTO():
+class MarvelResourceDTO:
 
     id: int

@@ -5,16 +5,16 @@ class EventsBot(MarvelBot):
 
     tweet_interval = 24
 
-    def get_event(self):
+    def get_random_event(self):
         marvel_event = self.marvel_api.get_random_event()
         if marvel_event.thumbnail.is_available():
             return marvel_event
 
-        return self.get_event()
+        return self.get_random_event()
 
     def run(self):
         while True:
-            marvel_event = self.get_event()
+            marvel_event = self.get_random_event()
 
             self.logger.info(f'Tweeting about: {marvel_event}')
 

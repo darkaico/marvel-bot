@@ -3,16 +3,16 @@ from app.bots.base import MarvelBot
 
 class ComicsBot(MarvelBot):
 
-    def get_comic(self):
-        marvel_comic = self.marvel_api.get_random_character()
+    def get_random_comic(self):
+        marvel_comic = self.marvel_api.get_random_comic()
         if marvel_comic.thumbnail.is_available():
             return marvel_comic
 
-        return self.get_comic()
+        return self.get_random_comic()
 
     def run(self):
         while True:
-            marvel_comic = self.get_comic()
+            marvel_comic = self.get_random_comic()
 
             self.logger.info(f'Tweeting about: {marvel_comic}')
 

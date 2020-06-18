@@ -7,6 +7,7 @@ import requests
 from app import marvel as marvel_constants
 from app.marvel.dtos import (
     CharacterDTO,
+    ComicDTO,
     EventDTO,
     dto_builders
 )
@@ -64,6 +65,11 @@ class MarvelAPI:
         json_response = self._get_random_resource_response('characters')
 
         return dto_builders.build_character_from_api_response(json_response)
+
+    def get_random_comic(self) -> ComicDTO:
+        json_response = self._get_random_resource_response('comics')
+
+        return dto_builders.build_comic_from_api_response(json_response)
 
     def get_random_event(self) -> EventDTO:
         json_response = self._get_random_resource_response('events')

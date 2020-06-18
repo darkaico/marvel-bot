@@ -3,16 +3,17 @@ from app.bots.base import MarvelBot
 
 class CharactersBot(MarvelBot):
 
-    def get_character(self):
+    def get_random_character(self):
         marvel_character = self.marvel_api.get_random_character()
+
         if marvel_character.thumbnail.is_available():
             return marvel_character
 
-        return self.get_character()
+        return self.get_random_character()
 
     def run(self):
         while True:
-            marvel_character = self.get_character()
+            marvel_character = self.get_random_character()
 
             self.logger.info(f'Tweeting about: {marvel_character}')
 
