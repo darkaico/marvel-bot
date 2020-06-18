@@ -1,9 +1,0 @@
-requests
-tweepy
-python-dotenv
-dacite
-pytest
-pytest-cov
-pytest-mock
-cached-property
-faker
