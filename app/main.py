@@ -15,4 +15,4 @@ if __name__ == "__main__":
 
     time.sleep(60*60*4)
 
-    CharactersBot().start()
+    # CharactersBot().start()
