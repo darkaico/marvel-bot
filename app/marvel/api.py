@@ -69,10 +69,3 @@ class MarvelAPI:
         json_response = self._get_random_resource_response('events')
 
         return dto_builders.build_event_from_api_response(json_response)
-
-    def get_character_comics(self, character_id: int, limit: int = marvel_constants.DEFAULT_API_LIMIT):
-        comics_url = self._build_api_url(f'characters/{character_id}/comics', limit=limit)
-
-        response = requests.get(comics_url)
-
-        return dto_builders.build_comics_from_api_response(response.json())

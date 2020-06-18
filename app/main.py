@@ -10,9 +10,17 @@ from app.bots import (
 load_dotenv()
 
 
-if __name__ == "__main__":
+def start_bots():
     EventsBot().start()
 
     time.sleep(60*60*4)
 
-    # CharactersBot().start()
+    CharactersBot().start()
+
+
+def init():
+    if __name__ == "__main__":
+        start_bots()
+
+
+init()

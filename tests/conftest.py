@@ -16,7 +16,16 @@ def no_requests(monkeypatch):
 
 
 @dataclass
-class MockStatus:
+class MockResponse:
+
+    content: str
+
+    def json(self):
+        return {}
+
+
+@dataclass
+class MockTweet:
 
     id: int
     text: str
@@ -28,21 +37,21 @@ def twitter_api_mock(monkeypatch):
     def mock_get_timeline(self):
 
         return [
-            MockStatus(id=status_id, text=fake.paragraph())
+            MockTweet(id=status_id, text=fake.paragraph())
             for status_id in range(fake.random_int(max=20))
         ]
 
     def mock_update_status(self, status, in_reply_to_status_id=None):
 
-        return MockStatus(id=fake.random_int(), text=status)
+        return MockTweet(id=fake.random_int(), text=status)
 
     def mock_update_with_media(self, status, filename, file, in_reply_to_status_id=None):
 
-        return MockStatus(id=fake.random_int(), text=status)
+        return MockTweet(id=fake.random_int(), text=status)
 
     def mock_destroy(self, status_id):
 
-        return MockStatus(id=status_id, text=fake.paragraph())
+        return MockTweet(id=status_id, text=fake.paragraph())
 
     twitter_api = TwitterAPI(
         consumer_api_key='',

@@ -1,7 +1,10 @@
+import requests
+
 from app.marvel.dtos import (
     CharacterDTO,
     EventDTO
 )
+from tests.conftest import MockResponse
 from tests.fixtures.fixtures_builder import get_single_resource_response
 
 
@@ -54,6 +57,12 @@ def mock_get_random_offset_response(resource_url, params):
             'total': 10000
         }
     }
+
+
+def test_get_method(marvel_api_mock, monkeypatch):
+    monkeypatch.setattr(requests, 'get', lambda url, params: MockResponse(''))
+
+    assert isinstance(marvel_api_mock.get(''), dict)
 
 
 def test_generate_random_offset(marvel_api_mock, monkeypatch):

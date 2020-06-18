@@ -1,10 +1,9 @@
 import calendar
 import datetime
 import os
+import random
 import time
 from threading import Thread
-
-from cached_property import cached_property
 
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
@@ -34,11 +33,12 @@ class MarvelBot(LoggerMixin, Thread):
     def weekday(self):
         return calendar.day_name[datetime.datetime.now().weekday()]
 
-    @cached_property
-    def tweet_time(self):
-        return 60 * 60 * self.tweet_interval
+    def generate_tweet_time(self):
+        random_time = 60 * random.randint(-60, 60)
+
+        return 60 * 60 * self.tweet_interval + random_time
 
     def wait_for_tweet(self):
         self.logger.info(f'sleeping {self.tweet_interval} hours...')
 
-        time.sleep(self.tweet_time)
+        time.sleep(self.generate_tweet_time())
