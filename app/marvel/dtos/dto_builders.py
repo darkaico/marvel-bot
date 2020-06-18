@@ -46,6 +46,15 @@ def build_events_from_api_response(events_response: dict):
     return result
 
 
+def build_comic_from_api_response(api_response: dict):
+    comic_data = api_response['data']['results'][0]
+
+    return from_dict(
+        data_class=ComicDTO,
+        data=comic_data,
+    )
+
+
 def build_comics_from_api_response(comics_response: dict):
     result = []
 

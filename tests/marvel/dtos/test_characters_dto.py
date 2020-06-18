@@ -37,6 +37,11 @@ def test_short_description(wolverine_dto):
     assert len(wolverine_dto.short_description) == 200
 
 
+def test_wolverine_str(wolverine_dto):
+
+    assert 'Wolverine' in str(wolverine_dto)
+
+
 def test_wolverine_data(wolverine_dto):
 
     assert wolverine_dto.name == 'Wolverine'
