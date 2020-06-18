@@ -3,12 +3,15 @@ language: python
 python:
   - "3.8.3"
 
+before_install:
+  - pip install poetry
+
 install:
   - pip install coveralls
-  - pip install -r requirements.txt
+  - poetry install
 
 script:
-  - pytest
+  - poetry run pytest
 
 after_success:
   - coverage
