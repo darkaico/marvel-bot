@@ -3,6 +3,9 @@ from app.bots.base import MarvelBot
 
 class ComicsBot(MarvelBot):
 
+    # Every day
+    tweet_interval = 60 * 60 * 24
+
     def get_random_comic(self):
         marvel_comic = self.marvel_api.get_random_comic()
         if marvel_comic.thumbnail.is_available():
@@ -14,10 +17,14 @@ class ComicsBot(MarvelBot):
         while True:
             marvel_comic = self.get_random_comic()
 
-            self.logger.info(f'Tweeting about: {marvel_comic}')
+            tw_status = f'=== {self.weekday} Comic ===\n'
+            tw_status += f'#marvel #comicoftheday\n\n'
+            tw_status += marvel_comic.twitter_status
 
-            tw_status = self.twitter_api.update_with_media(
-                status=marvel_comic.twitter_status,
+            self.logger.info(f'Tweet: {tw_status}')
+
+            self.twitter_api.update_with_media(
+                status=tw_status,
                 filename=marvel_comic.thumbnail.name,
                 file=marvel_comic.thumbnail.image_data
             )

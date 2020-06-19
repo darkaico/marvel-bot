@@ -38,6 +38,18 @@
           {
             "type": "detail",
             "url": "http://marvel.com/comics/collection/1332/x-men_days_of_future_past_trade_paperback?utm_campaign=apiRef&utm_source=ad8e81f48d141af3880dfb3e6e660658"
+          },
+          {
+            "type": "purchase",
+            "url": "http://marvel.com/comics/collection/1332/x-men_days_of_future_past_trade_paperback?utm_campaign=apiRef&utm_source=ad8e81f48d141af3880dfb3e6e660658"
+          },
+          {
+            "type": "reader",
+            "url": "http://marvel.com/comics/collection/1332/x-men_days_of_future_past_trade_paperback?utm_campaign=apiRef&utm_source=ad8e81f48d141af3880dfb3e6e660658"
+          },
+          {
+            "type": "inAppLink",
+            "url": "http://marvel.com/comics/collection/1332/x-men_days_of_future_past_trade_paperback?utm_campaign=apiRef&utm_source=ad8e81f48d141af3880dfb3e6e660658"
           }
         ],
         "series": {

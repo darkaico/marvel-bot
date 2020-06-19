@@ -12,7 +12,8 @@ from app.utils.mixins import LoggerMixin
 
 class MarvelBot(LoggerMixin, Thread):
 
-    tweet_interval = 6
+    tweet_interval = 60 * 60 * 6
+    logger_name = 'marvel_bots'
 
     def __init__(self):
         Thread.__init__(self)
@@ -36,7 +37,7 @@ class MarvelBot(LoggerMixin, Thread):
     def generate_tweet_time(self):
         random_time = 60 * random.randint(-60, 60)
 
-        return 60 * 60 * self.tweet_interval + random_time
+        return self.tweet_interval + random_time
 
     def wait_for_tweet(self):
         self.logger.info(f'sleeping {self.tweet_interval} hours...')

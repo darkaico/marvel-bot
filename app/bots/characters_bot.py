@@ -14,11 +14,12 @@ class CharactersBot(MarvelBot):
     def run(self):
         while True:
             marvel_character = self.get_random_character()
+            tw_status = marvel_character.twitter_status
 
-            self.logger.info(f'Tweeting about: {marvel_character}')
+            self.logger.info(f'Tweet: {tw_status}')
 
             tw_status = self.twitter_api.update_with_media(
-                status=marvel_character.twitter_status,
+                status=tw_status,
                 filename=marvel_character.thumbnail.name,
                 file=marvel_character.thumbnail.image_data
             )

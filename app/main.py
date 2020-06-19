@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 from app.bots import (
     CharactersBot,
+    ComicsBot,
     EventsBot
 )
 
@@ -11,11 +12,13 @@ load_dotenv()
 
 
 def start_bots():
-    EventsBot().start()
-
-    time.sleep(60*60*4)
-
     CharactersBot().start()
+
+    time.sleep(60*60*2)
+    ComicsBot().start()
+
+    time.sleep(60*60*2)
+    EventsBot().start()
 
 
 def init():

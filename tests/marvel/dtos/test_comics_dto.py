@@ -38,3 +38,8 @@ def test_comic_str(comic_dto):
 def test_comic_twitter_status(comic_dto):
 
     assert 'Have you read "X-Men: Days of Future Past (Trade Paperback)"?' in comic_dto.twitter_status
+
+
+def test_short_description(comic_dto):
+
+    assert len(comic_dto.short_description) == 200

@@ -3,7 +3,8 @@ from app.bots.base import MarvelBot
 
 class EventsBot(MarvelBot):
 
-    tweet_interval = 24
+    # Every 7 days
+    tweet_interval = 60 * 60 * 24 * 7
 
     def get_random_event(self):
         marvel_event = self.marvel_api.get_random_event()
@@ -16,13 +17,11 @@ class EventsBot(MarvelBot):
         while True:
             marvel_event = self.get_random_event()
 
-            self.logger.info(f'Tweeting about: {marvel_event}')
-
-            tw_status = f'=== {self.weekday} Event ===\n'
-            tw_status += f'#marvel #eventoftheday\n\n'
+            tw_status = f'=== Weekly Event ===\n'
+            tw_status += f'#marvel #eventoftheweek\n\n'
             tw_status += marvel_event.twitter_status
 
-            self.logger.info(tw_status)
+            self.logger.info(f'Tweet: {tw_status}')
 
             self.twitter_api.update_with_media(
                 status=tw_status,
