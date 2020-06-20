@@ -18,13 +18,12 @@ from .common_dto import (
 @dataclass
 class MarvelResourceDTO:
 
-    _marvel_links_by_type = {}
-
     id: int
     thumbnail: ImageDTO
     urls: List[MarvelLinkDTO]
 
     def __post_init__(self):
+        self._marvel_links_by_type = {}
         # Set marvel links by type if exists
         if self.urls:
             for marvel_link in self.urls:

@@ -1,5 +1,7 @@
+import pytest
 import requests
 
+from app.marvel.api import MarvelAPI
 from app.marvel.dtos import (
     CharacterDTO,
     ComicDTO,
@@ -7,6 +9,17 @@ from app.marvel.dtos import (
 )
 from tests.conftest import MockResponse
 from tests.fixtures.fixtures_builder import get_single_resource_response
+
+
+@pytest.fixture
+def marvel_api_mock():
+
+    marvel_api = MarvelAPI(
+        public_key='',
+        private_key='',
+    )
+
+    return marvel_api
 
 
 def test_marvel_api_hash(marvel_api_mock):

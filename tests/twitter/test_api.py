@@ -1,3 +1,19 @@
+import pytest
+
+from app.twitter.api import TwitterAPI
+
+
+@pytest.fixture
+def twitter_api_mock(monkeypatch):
+
+    twitter_api = TwitterAPI(
+        consumer_api_key='',
+        consumer_api_secret_key='',
+        access_token='',
+        access_token_secret='',
+    )
+
+    return twitter_api
 
 
 def test_get_timeline(twitter_api_mock):

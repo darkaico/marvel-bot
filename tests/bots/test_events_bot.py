@@ -4,10 +4,14 @@ import pytest
 
 from app.bots import EventsBot
 from app.marvel.api import MarvelAPI
+from app.twitter.api import TwitterAPI
 
 
 @dataclass
 class MockAvailableThumbnail:
+
+    name: str = ''
+    image_data: object = None
 
     def is_available(self):
         return True
@@ -17,6 +21,10 @@ class MockAvailableThumbnail:
 class MockEvent:
 
     thumbnail: object
+
+    @property
+    def twitter_status(self):
+        return 'Tweet'
 
 
 @pytest.fixture
@@ -33,6 +41,14 @@ def events_bot(monkeypatch):
 
 
 def test_get_random_event(events_bot):
-    event = events_bot.get_random_event()
+    event = events_bot._get_random_event()
 
     assert event.thumbnail.is_available()
+
+
+def test_tweet(events_bot, mocker):
+    mocker.patch('app.twitter.api.TwitterAPI.update_with_media')
+
+    events_bot.tweet()
+
+    TwitterAPI.update_with_media.assert_called_once()

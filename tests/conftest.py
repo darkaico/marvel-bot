@@ -1,18 +1,11 @@
+import os
 from dataclasses import dataclass
 
 import pytest
 from faker import Faker
 from tweepy import API
 
-from app.marvel.api import MarvelAPI
-from app.twitter.api import TwitterAPI
-
 fake = Faker()
-
-
-@pytest.fixture(autouse=True)
-def no_requests(monkeypatch):
-    monkeypatch.delattr("requests.sessions.Session.request")
 
 
 @dataclass
@@ -31,8 +24,14 @@ class MockTweet:
     text: str
 
 
-@pytest.fixture
-def twitter_api_mock(monkeypatch):
+@pytest.fixture(autouse=True)
+def no_requests(monkeypatch):
+    """No requests allowed during tests."""
+    monkeypatch.delattr("requests.sessions.Session.request")
+
+
+@pytest.fixture(autouse=True)
+def mock_tweepy_api(monkeypatch):
 
     def mock_get_timeline(self):
 
@@ -53,27 +52,12 @@ def twitter_api_mock(monkeypatch):
 
         return MockTweet(id=status_id, text=fake.paragraph())
 
-    twitter_api = TwitterAPI(
-        consumer_api_key='',
-        consumer_api_secret_key='',
-        access_token='',
-        access_token_secret='',
-    )
-
     monkeypatch.setattr(API, 'user_timeline', mock_get_timeline)
     monkeypatch.setattr(API, 'update_status', mock_update_status)
     monkeypatch.setattr(API, 'update_with_media', mock_update_with_media)
     monkeypatch.setattr(API, 'destroy_status', mock_destroy)
 
-    return twitter_api
 
-
-@pytest.fixture
-def marvel_api_mock():
-
-    marvel_api = MarvelAPI(
-        public_key='',
-        private_key='',
-    )
-
-    return marvel_api
+@pytest.fixture(autouse=True)
+def test_env(monkeypatch):
+    os.environ["ENV"] = "TEST"
