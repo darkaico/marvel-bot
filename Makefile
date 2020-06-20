@@ -9,3 +9,6 @@ start:
 
 test:
 	poetry run pytest
+
+export:
+	git archive master | gzip > latest.tgz
