@@ -11,13 +11,17 @@ from app.bots import (
 load_dotenv()
 
 
+def sleep_hours(hours: int):
+    time.sleep(60*60*hours)
+
+
 def start_bots():
     CharactersBot().start()
 
-    time.sleep(60*60*2)
+    sleep_hours(2)
     ComicsBot().start()
 
-    time.sleep(60*60*2)
+    sleep_hours(2)
     EventsBot().start()
 
 

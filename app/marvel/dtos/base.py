@@ -22,6 +22,8 @@ class MarvelResourceDTO:
     thumbnail: ImageDTO
     urls: List[MarvelLinkDTO]
 
+    _marvel_links_by_type = None
+
     def __post_init__(self):
         self._marvel_links_by_type = {}
         # Set marvel links by type if exists
