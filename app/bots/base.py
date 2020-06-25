@@ -43,3 +43,11 @@ class MarvelBot(LoggerMixin, Thread):
         self.logger.info(f'sleeping {self.tweet_interval} hours...')
 
         time.sleep(self.generate_tweet_time())
+
+    def run(self):
+        while True:
+            self.tweet()
+            self.wait_for_tweet()
+
+    def tweet(self):
+        raise NotImplementedError()

@@ -22,8 +22,3 @@ class CharactersBot(MarvelBot):
             filename=marvel_character.thumbnail.name,
             file=marvel_character.thumbnail.image_data
         )
-
-    def run(self):
-        while True:
-            self.tweet()
-            self.wait_for_tweet()

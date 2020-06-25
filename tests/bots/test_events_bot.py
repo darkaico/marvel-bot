@@ -18,6 +18,16 @@ class MockAvailableThumbnail:
 
 
 @dataclass
+class MockNotAvailableThumbnail:
+
+    name: str = ''
+    image_data: object = None
+
+    def is_available(self):
+        return False
+
+
+@dataclass
 class MockEvent:
 
     thumbnail: object
@@ -28,20 +38,46 @@ class MockEvent:
 
 
 @pytest.fixture
-def events_bot(monkeypatch):
+def valid_event():
+    return MockEvent(
+        thumbnail=MockAvailableThumbnail()
+    )
 
-    def mock_get_valid_event(self):
-        return MockEvent(
-            thumbnail=MockAvailableThumbnail()
-        )
 
-    monkeypatch.setattr(MarvelAPI, 'get_random_event', mock_get_valid_event)
+@pytest.fixture
+def invalid_event():
+    return MockEvent(
+        thumbnail=MockNotAvailableThumbnail()
+    )
+
+
+@pytest.fixture
+def events_bot(mocker, valid_event):
+    mocker.patch('app.marvel.api.MarvelAPI.get_random_event')
+
+    MarvelAPI.get_random_event.side_effect = [valid_event]
+
+    return EventsBot()
+
+
+@pytest.fixture
+def events_bot_no_image_first_time(mocker, valid_event, invalid_event):
+    mocker.patch('app.marvel.api.MarvelAPI.get_random_event')
+
+    MarvelAPI.get_random_event.side_effect = [invalid_event, valid_event]
 
     return EventsBot()
 
 
 def test_get_random_event(events_bot):
     event = events_bot._get_random_event()
+
+    assert event.thumbnail.is_available()
+
+
+def test_get_random_event_first_invalid(events_bot_no_image_first_time):
+
+    event = events_bot_no_image_first_time._get_random_event()
 
     assert event.thumbnail.is_available()
 

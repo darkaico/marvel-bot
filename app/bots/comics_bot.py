@@ -27,8 +27,3 @@ class ComicsBot(MarvelBot):
             filename=marvel_comic.thumbnail.name,
             file=marvel_comic.thumbnail.image_data
         )
-
-    def run(self):
-        while True:
-            self.tweet()
-            self.wait_for_tweet()

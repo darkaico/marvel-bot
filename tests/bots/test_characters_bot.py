@@ -18,6 +18,16 @@ class MockAvailableThumbnail:
 
 
 @dataclass
+class MockNotAvailableThumbnail:
+
+    name: str = ''
+    image_data: object = None
+
+    def is_available(self):
+        return False
+
+
+@dataclass
 class MockCharacter:
 
     thumbnail: object
@@ -28,27 +38,54 @@ class MockCharacter:
 
 
 @pytest.fixture
-def character_bot(monkeypatch):
+def valid_character():
+    return MockCharacter(
+        thumbnail=MockAvailableThumbnail()
+    )
 
-    def mock_get_valid_character(self):
-        return MockCharacter(
-            thumbnail=MockAvailableThumbnail()
-        )
 
-    monkeypatch.setattr(MarvelAPI, 'get_random_character', mock_get_valid_character)
+@pytest.fixture
+def invalid_character():
+    return MockCharacter(
+        thumbnail=MockNotAvailableThumbnail()
+    )
+
+
+@pytest.fixture
+def characters_bot(mocker, valid_character):
+    mocker.patch('app.marvel.api.MarvelAPI.get_random_character')
+
+    MarvelAPI.get_random_character.side_effect = [valid_character]
 
     return CharactersBot()
 
 
-def test_get_random_character(character_bot):
-    character = character_bot._get_random_character()
+@pytest.fixture
+def characters_bot_no_image_first_time(mocker, valid_character, invalid_character):
+    mocker.patch('app.marvel.api.MarvelAPI.get_random_character')
+
+    MarvelAPI.get_random_character.side_effect = [invalid_character, valid_character]
+
+    return CharactersBot()
+
+
+def test_get_random_character_valid(characters_bot):
+
+    character = characters_bot._get_random_character()
 
     assert character.thumbnail.is_available()
 
 
-def test_tweet(character_bot, mocker):
+def test_get_random_character_first_invalid(characters_bot_no_image_first_time):
+
+    character = characters_bot_no_image_first_time._get_random_character()
+
+    assert character.thumbnail.is_available()
+
+
+def test_tweet(characters_bot, mocker):
     mocker.patch('app.twitter.api.TwitterAPI.update_with_media')
 
-    character_bot.tweet()
+    characters_bot.tweet()
 
     TwitterAPI.update_with_media.assert_called_once()

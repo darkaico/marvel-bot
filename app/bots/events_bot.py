@@ -27,8 +27,3 @@ class EventsBot(MarvelBot):
             filename=marvel_event.thumbnail.name,
             file=marvel_event.thumbnail.image_data
         )
-
-    def run(self):
-        while True:
-            self.tweet()
-            self.wait_for_tweet()

@@ -10,6 +10,11 @@ def mock_marvel_bot():
     return MarvelBot()
 
 
+def test_tweet_should_be_implemented(mock_marvel_bot):
+    with pytest.raises(NotImplementedError):
+        mock_marvel_bot.tweet()
+
+
 def test_tweet_time(mock_marvel_bot):
 
     assert isinstance(mock_marvel_bot.generate_tweet_time(), int)
