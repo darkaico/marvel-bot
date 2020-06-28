@@ -1,18 +1,16 @@
 language: python
-
 python:
-  - "3.8.3"
-
+- 3.8.3
 before_install:
-  - pip install poetry
-
+- pip install poetry
 install:
-  - pip install coveralls
-  - poetry install
-
+- pip install coveralls
+- poetry install
 script:
-  - poetry run pytest
-
+- poetry run pytest
 after_success:
-  - coverage
-  - coveralls
+- coverage
+- coveralls
+notifications:
+  slack:
+    secure: T38iyOmFGwlIeK4ewJCq3uSCphudh+M/0n53ZJ6oSoFKpdko9eIjPqdKeOhnh1YO9xjzips3Hw4QlzkdSAvq5o16Bg1/mgqv4pcC9Y8oBU/5J7KRbvx8u9nK6lMhOkwoXgNDSepyvCmmL6c2wEh7W9nOiGfhp9WaLrvHBddXe8r/n1C5leb68K6w/Z///2rDBF8MXN2K7ElgY8kFMcpOvsLoOYbJnympNpUi4xSuWknzs0UyBdgf0pieX9BgLFLxuOkg5NW3UlbfoYq+/YmDGk1kBTLvDIZ7L8h3G7YJ/ccFmO7bIbwVRA83sJdv/fhUrX+KEtZ4aPAt9GSqeG26HB4kHgd3ErPL8vCU0S7NEGn+EAsamuytjZX4hINYRrJIJ3XUWe5nmTd46xnqES5/Qv9RsMmSAyL9UNqCA4gWGVuzxIsULgRfCO6aW8SVIw1eOCPMrEynlahdf0+cdXcrCGeTP6OPnw7EHYYR2nhi4G+bAZwu2r4Ih80MYSKUr9XnN7P7PA4lUasHaoV0XL1iFnaKd2G8y+eeO2Cjz2md5dS9qF5l6ItB/m16g1ftVD2JqutJ8acyRAMSisg9V+KEWdslS/ITgU0dXQv/cfu+JUe5JWplGztELQmxCLAfTLLLxadoZXdDrmIoGuhFUX8yxUHLiobIHERtkhgN8gCAQcw=
