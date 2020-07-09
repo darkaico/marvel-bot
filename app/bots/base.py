@@ -12,7 +12,7 @@ from app.utils.mixins import LoggerMixin
 
 class MarvelBot(LoggerMixin, Thread):
 
-    tweet_interval = 60 * 60 * 6
+    tweet_interval = 60 * 60 * 24
     logger_name = 'marvel_bots'
 
     def __init__(self):
