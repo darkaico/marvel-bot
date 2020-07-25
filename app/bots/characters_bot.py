@@ -14,7 +14,7 @@ class CharactersBot(MarvelBot):
     def tweet(self):
         marvel_character = self._get_random_character()
 
-        tw_status = f'=== {self.weekday} Character ===\n'
+        tw_status = f'🎉🎉🎉 {self.weekday} Character 🎉🎉🎉\n'
         tw_status += marvel_character.twitter_status
 
         self.logger.info(f'Tweet: {tw_status}')

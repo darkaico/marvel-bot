@@ -16,7 +16,7 @@ class EventsBot(MarvelBot):
     def tweet(self):
         marvel_event = self._get_random_event()
 
-        tw_status = f'=== Weekly Event ===\n'
+        tw_status = f'🎉🎉🎉 Weekly Event 🎉🎉🎉\n'
         tw_status += f'#marvel #eventoftheweek\n\n'
         tw_status += marvel_event.twitter_status
 
