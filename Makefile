@@ -1,7 +1,7 @@
 test:
 	poetry run pytest
 
-lint: ## Lint all files.
+lint:
 	pre-commit run --all-files
 
 docker-build:
