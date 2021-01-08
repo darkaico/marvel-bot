@@ -18,6 +18,17 @@ Could it be see in action [here](https://twitter.com/marvelibot)
 - [Python dotenv](https://github.com/theskumar/python-dotenv): simplifies env var uses.
 - [Pytest](https://docs.pytest.org/en/latest/): just it, test it.
 
+## Development
+
+### Tests
+
+Having poetry installed simply do
+
+```bash
+$ poetry shell
+$ pytest
+```
+
 ## Thanks
 
 Based on the idea from @fermezz [Star Wars bot](https://github.com/fermezz/starwars-bot)
