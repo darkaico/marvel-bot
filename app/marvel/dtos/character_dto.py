@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from app.marvel.constants import LinkTypeEnum
 from app.utils import string_utils
 
 from .base import MarvelResourceDTO

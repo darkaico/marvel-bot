@@ -15,7 +15,7 @@ def test_tweet_should_be_implemented(mock_marvel_bot):
         mock_marvel_bot.tweet()
 
 
-def test_tweet_time(mock_marvel_bot):
+def test_generate_tweet_time(mock_marvel_bot):
 
     assert isinstance(mock_marvel_bot.generate_tweet_time(), int)
 

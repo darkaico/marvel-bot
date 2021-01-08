@@ -49,6 +49,16 @@ jobs:
           pytest
           coverage report
 
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true
+
   deploy:
     if: contains(github.ref, 'refs/heads/master')
     name: deploy to cluster

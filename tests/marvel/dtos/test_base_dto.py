@@ -1,9 +1,6 @@
-import json
-
 import pytest
 from dacite import from_dict
 
-from app.marvel.constants import LinkTypeEnum
 from app.marvel.dtos.base import MarvelResourceDTO
 
 

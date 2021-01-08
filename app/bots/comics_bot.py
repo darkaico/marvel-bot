@@ -16,8 +16,8 @@ class ComicsBot(MarvelBot):
     def tweet(self):
         marvel_comic = self._get_random_comic()
 
-        tw_status = f"🎉🎉🎉 Weekly Comic 🎉🎉🎉\n"
-        tw_status += f"#marvel #comicoftheday\n\n"
+        tw_status = "🎉🎉🎉 Weekly Comic 🎉🎉🎉\n"
+        tw_status += "#marvel #comicoftheday\n\n"
         tw_status += marvel_comic.twitter_status
 
         self.logger.info(f"Tweet: {tw_status}")

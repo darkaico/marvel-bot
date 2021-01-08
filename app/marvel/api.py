@@ -30,7 +30,7 @@ class MarvelAPI:
         ts = self._generate_ts()
         hash_token = self._generate_hash_token(ts)
 
-        return f"{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.public_key}&limit={limit}"
+        return f"{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.public_key}&limit={limit}"  # noqa: E501
 
     def get(self, resource_url: str, params: dict = None) -> dict:
         return requests.get(resource_url, params=params).json()

@@ -1,9 +1,7 @@
-import json
-
 import pytest
 
 from app.marvel.constants import LinkTypeEnum
-from app.marvel.dtos import CharacterDTO, ComicDTO, dto_builders
+from app.marvel.dtos import dto_builders
 from tests.fixtures.fixtures_builder import (
     get_character_no_image_response,
     get_wolverine_list_response,
