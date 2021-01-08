@@ -9,13 +9,13 @@ from tests.conftest import MockResponse
 
 @pytest.fixture
 def image_dto():
-    return ImageDTO('', '')
+    return ImageDTO("", "")
 
 
 def test_image_data(image_dto, monkeypatch):
     def mock_get_content(url):
         return MockResponse(content=None)
 
-    monkeypatch.setattr(requests, 'get', mock_get_content)
+    monkeypatch.setattr(requests, "get", mock_get_content)
 
     assert isinstance(image_dto.image_data, BytesIO)

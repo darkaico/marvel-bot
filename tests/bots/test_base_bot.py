@@ -21,8 +21,8 @@ def test_tweet_time(mock_marvel_bot):
 
 
 def test_tweet_time_differents(mock_marvel_bot):
-    tweet_time_one = mock_marvel_bot.generate_tweet_time(),
-    tweet_time_two = mock_marvel_bot.generate_tweet_time(),
+    tweet_time_one = (mock_marvel_bot.generate_tweet_time(),)
+    tweet_time_two = (mock_marvel_bot.generate_tweet_time(),)
 
     assert tweet_time_one != tweet_time_two
 
@@ -33,7 +33,7 @@ def test_weekday(mock_marvel_bot):
 
 
 def test_tweet_time(mock_marvel_bot, mocker):
-    mocker.patch('time.sleep')
+    mocker.patch("time.sleep")
 
     mock_marvel_bot.wait_for_tweet()
 
