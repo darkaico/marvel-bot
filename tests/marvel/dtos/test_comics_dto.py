@@ -3,8 +3,10 @@ import json
 import pytest
 
 from app.marvel.dtos import ComicDTO, dto_builders
-from tests.fixtures.fixtures_builder import (get_comics_response,
-                                             get_single_comic_list_response)
+from tests.fixtures.fixtures_builder import (
+    get_comics_response,
+    get_single_comic_list_response,
+)
 
 
 @pytest.fixture

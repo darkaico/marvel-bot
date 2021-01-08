@@ -13,5 +13,9 @@ docker-reset:
 docker-start:
 	docker run --name marvelbot -d marvel-bot
 
+clean:
+	find . -iname '*.pyc' -delete
+	rm -rf .pytest_cache
+
 export:
 	git archive master | gzip > latest.tgz

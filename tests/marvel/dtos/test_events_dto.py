@@ -3,8 +3,10 @@ import json
 import pytest
 
 from app.marvel.dtos import EventDTO, dto_builders
-from tests.fixtures.fixtures_builder import (get_events_response,
-                                             get_single_event_list_response)
+from tests.fixtures.fixtures_builder import (
+    get_events_response,
+    get_single_event_list_response,
+)
 
 
 @pytest.fixture
