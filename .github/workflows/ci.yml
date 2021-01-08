@@ -1,6 +1,12 @@
-name: Marvel Bot CI
+name: Marvel Bot CI/CD
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   test:
@@ -14,6 +20,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+      - name: Lint check
+        run: make lint
 
       - name: Install Poetry
         uses: snok/install-poetry@v1.1.1
@@ -37,3 +48,19 @@ jobs:
           source .venv/bin/activate
           pytest
           coverage report
+
+  deploy:
+    if: contains(github.ref, 'refs/heads/master')
+    name: deploy to cluster
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: build and push to docker
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ github.repository }}
+          tag_with_ref: true
+          tag_with_sha: true
+          tags: ${{ github.sha }}
