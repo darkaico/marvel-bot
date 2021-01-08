@@ -1,22 +1,19 @@
 import pytest
 
 from app.marvel.dtos import dto_builders
-from tests.fixtures.fixtures_builder import (
-    get_events_response,
-    get_single_event_list_response,
-)
+from tests.fixtures import fixtures_builder
 
 
 @pytest.fixture
 def events_dto():
-    events_response = get_events_response()
+    events_response = fixtures_builder.get_events_response()
 
     return dto_builders.build_events_from_api_response(events_response)
 
 
 @pytest.fixture
 def event_dto():
-    event_response = get_single_event_list_response()
+    event_response = fixtures_builder.get_single_event_list_response()
 
     return dto_builders.build_event_from_api_response(event_response)
 
