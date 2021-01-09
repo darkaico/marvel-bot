@@ -1,8 +1,9 @@
-from app.utils.mixins import LoggerMixin
-from app.marvel.api import MarvelAPI
-from app.twitter.api import TwitterAPI
 import calendar
 import datetime
+
+from app.marvel.api import MarvelAPI
+from app.twitter.api import TwitterAPI
+from app.utils.mixins import LoggerMixin
 
 
 class MarvelJob(LoggerMixin):
