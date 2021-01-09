@@ -3,14 +3,10 @@ import json
 import pytest
 
 from app.marvel.constants import LinkTypeEnum
-from app.marvel.dtos import (
-    CharacterDTO,
-    ComicDTO,
-    dto_builders
-)
+from app.marvel.dtos import CharacterDTO, ComicDTO, dto_builders
 from tests.fixtures.fixtures_builder import (
     get_character_no_image_response,
-    get_wolverine_list_response
+    get_wolverine_list_response,
 )
 
 
@@ -39,16 +35,16 @@ def test_short_description(wolverine_dto):
 
 def test_wolverine_str(wolverine_dto):
 
-    assert 'Wolverine' in str(wolverine_dto)
+    assert "Wolverine" in str(wolverine_dto)
 
 
 def test_wolverine_data(wolverine_dto):
 
-    assert wolverine_dto.name == 'Wolverine'
+    assert wolverine_dto.name == "Wolverine"
     assert len(wolverine_dto.urls) == 3
     assert wolverine_dto.wiki_link.link_type == LinkTypeEnum.WIKI
 
 
 def test_wolverine_status(wolverine_dto):
 
-    assert 'Did you know about Wolverine ?' in wolverine_dto.twitter_status
+    assert "Did you know about Wolverine ?" in wolverine_dto.twitter_status

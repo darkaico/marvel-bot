@@ -2,13 +2,10 @@ import json
 
 import pytest
 
-from app.marvel.dtos import (
-    ComicDTO,
-    dto_builders
-)
+from app.marvel.dtos import ComicDTO, dto_builders
 from tests.fixtures.fixtures_builder import (
     get_comics_response,
-    get_single_comic_list_response
+    get_single_comic_list_response,
 )
 
 
@@ -37,7 +34,10 @@ def test_comic_str(comic_dto):
 
 def test_comic_twitter_status(comic_dto):
 
-    assert 'Have you read "X-Men: Days of Future Past (Trade Paperback)"?' in comic_dto.twitter_status
+    assert (
+        'Have you read "X-Men: Days of Future Past (Trade Paperback)"?'
+        in comic_dto.twitter_status
+    )
 
 
 def test_short_description(comic_dto):

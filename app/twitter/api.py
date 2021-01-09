@@ -1,5 +1,7 @@
 import os
+
 import tweepy
+
 from app.utils.singleton import SingletonMixin
 
 

@@ -16,7 +16,7 @@ class EventDTO(MarvelResourceDTO):
     description: Optional[str] = None
 
     def __str__(self):
-        return f'{self.id} - {self.title}'
+        return f"{self.id} - {self.title}"
 
     @property
     def short_description(self):

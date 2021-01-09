@@ -22,7 +22,10 @@ def test_api_update_status(twitter_api_mock):
 def test_api_update_with_media(twitter_api_mock):
     status = "Twitt with media"
 
-    assert twitter_api_mock.update_with_media(status=status, filename="", file=None).text == status
+    assert (
+        twitter_api_mock.update_with_media(status=status, filename="", file=None).text
+        == status
+    )
 
 
 def test_api_destroy_status(twitter_api_mock):
