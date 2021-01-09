@@ -1,6 +1,5 @@
 import calendar
 import datetime
-import os
 import random
 import time
 from threading import Thread

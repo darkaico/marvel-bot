@@ -34,7 +34,7 @@ class MarvelAPI(SingletonMixin):
         ts = self._generate_ts()
         hash_token = self._generate_hash_token(ts)
 
-        return f"{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.PUBLIC_KEY}&limit={limit}"
+        return f"{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.PUBLIC_KEY}&limit={limit}"  # noqa: E501
 
     def get(self, resource_url: str, params: dict = None) -> dict:
         response = requests.get(resource_url, params=params)

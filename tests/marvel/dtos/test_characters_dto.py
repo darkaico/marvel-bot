@@ -1,25 +1,20 @@
-import json
-
 import pytest
 
 from app.marvel.constants import LinkTypeEnum
-from app.marvel.dtos import CharacterDTO, ComicDTO, dto_builders
-from tests.fixtures.fixtures_builder import (
-    get_character_no_image_response,
-    get_wolverine_list_response,
-)
+from app.marvel.dtos import dto_builders
+from tests.fixtures import fixtures_builder
 
 
 @pytest.fixture
 def wolverine_dto():
-    wolverine_list_response = get_wolverine_list_response()
+    wolverine_list_response = fixtures_builder.get_wolverine_list_response()
 
     return dto_builders.build_character_from_api_response(wolverine_list_response)
 
 
 @pytest.fixture
 def character_no_image_dto():
-    character_response = get_character_no_image_response()
+    character_response = fixtures_builder.get_character_no_image_response()
 
     return dto_builders.build_character_from_api_response(character_response)
 
