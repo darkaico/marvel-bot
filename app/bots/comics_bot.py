@@ -16,14 +16,14 @@ class ComicsBot(MarvelBot):
     def tweet(self):
         marvel_comic = self._get_random_comic()
 
-        tw_status = f'🎉🎉🎉 Weekly Comic 🎉🎉🎉\n'
-        tw_status += f'#marvel #comicoftheday\n\n'
+        tw_status = "🎉🎉🎉 Weekly Comic 🎉🎉🎉\n"
+        tw_status += "#marvel #comicoftheday\n\n"
         tw_status += marvel_comic.twitter_status
 
-        self.logger.info(f'Tweet: {tw_status}')
+        self.logger.info(f"Tweet: {tw_status}")
 
         self.twitter_api.update_with_media(
             status=tw_status,
             filename=marvel_comic.thumbnail.name,
-            file=marvel_comic.thumbnail.image_data
+            file=marvel_comic.thumbnail.image_data,
         )

@@ -10,7 +10,7 @@ from app.twitter.api import TwitterAPI
 @dataclass
 class MockAvailableThumbnail:
 
-    name: str = ''
+    name: str = ""
     image_data: object = None
 
     def is_available(self):
@@ -20,7 +20,7 @@ class MockAvailableThumbnail:
 @dataclass
 class MockNotAvailableThumbnail:
 
-    name: str = ''
+    name: str = ""
     image_data: object = None
 
     def is_available(self):
@@ -34,26 +34,22 @@ class MockEvent:
 
     @property
     def twitter_status(self):
-        return 'Tweet'
+        return "Tweet"
 
 
 @pytest.fixture
 def valid_event():
-    return MockEvent(
-        thumbnail=MockAvailableThumbnail()
-    )
+    return MockEvent(thumbnail=MockAvailableThumbnail())
 
 
 @pytest.fixture
 def invalid_event():
-    return MockEvent(
-        thumbnail=MockNotAvailableThumbnail()
-    )
+    return MockEvent(thumbnail=MockNotAvailableThumbnail())
 
 
 @pytest.fixture
 def events_bot(mocker, valid_event):
-    mocker.patch('app.marvel.api.MarvelAPI.get_random_event')
+    mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
 
     MarvelAPI.get_random_event.side_effect = [valid_event]
 
@@ -62,7 +58,7 @@ def events_bot(mocker, valid_event):
 
 @pytest.fixture
 def events_bot_no_image_first_time(mocker, valid_event, invalid_event):
-    mocker.patch('app.marvel.api.MarvelAPI.get_random_event')
+    mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
 
     MarvelAPI.get_random_event.side_effect = [invalid_event, valid_event]
 
@@ -83,7 +79,7 @@ def test_get_random_event_first_invalid(events_bot_no_image_first_time):
 
 
 def test_tweet(events_bot, mocker):
-    mocker.patch('app.twitter.api.TwitterAPI.update_with_media')
+    mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
 
     events_bot.tweet()
 

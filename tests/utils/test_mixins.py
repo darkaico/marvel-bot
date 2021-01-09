@@ -7,7 +7,7 @@ from app.utils.mixins import LoggerMixin
 
 class LoggerWithName(LoggerMixin):
 
-    logger_name = 'ingenious'
+    logger_name = "ingenious"
 
 
 class LoggerWithoutName(LoggerMixin):

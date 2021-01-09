@@ -1,9 +1,6 @@
-import json
-
 import pytest
 from dacite import from_dict
 
-from app.marvel.constants import LinkTypeEnum
 from app.marvel.dtos.base import MarvelResourceDTO
 
 
@@ -16,9 +13,9 @@ def basic_marvel_dto():
             "id": 7,
             "thumbnail": {
                 "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
-                "extension": "jpg"
+                "extension": "jpg",
             },
-            "urls": []
+            "urls": [],
         },
     )
 
@@ -32,22 +29,13 @@ def marvel_dto_with_urls():
             "id": 7,
             "thumbnail": {
                 "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
-                "extension": "jpg"
+                "extension": "jpg",
             },
             "urls": [
-                {
-                    "type": "detail",
-                    "url": "detail_url"
-                },
-                {
-                    "type": "wiki",
-                    "url": "wiki_url"
-                },
-                {
-                    "type": "comiclink",
-                    "url": "comiclink_url"
-                }
-            ]
+                {"type": "detail", "url": "detail_url"},
+                {"type": "wiki", "url": "wiki_url"},
+                {"type": "comiclink", "url": "comiclink_url"},
+            ],
         },
     )
 
@@ -61,14 +49,9 @@ def marvel_dtos():
             "id": 1,
             "thumbnail": {
                 "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
-                "extension": "jpg"
+                "extension": "jpg",
             },
-            "urls": [
-                {
-                    "type": "detail",
-                    "url": "detail_url"
-                },
-            ]
+            "urls": [{"type": "detail", "url": "detail_url"}],
         },
     )
     dto_two = from_dict(
@@ -77,14 +60,9 @@ def marvel_dtos():
             "id": 2,
             "thumbnail": {
                 "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
-                "extension": "jpg"
+                "extension": "jpg",
             },
-            "urls": [
-                {
-                    "type": "wiki",
-                    "url": "wiki_url"
-                },
-            ]
+            "urls": [{"type": "wiki", "url": "wiki_url"}],
         },
     )
 

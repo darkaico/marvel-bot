@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from app.marvel.constants import LinkTypeEnum
 from app.utils import string_utils
 
 from .base import MarvelResourceDTO
@@ -21,7 +20,7 @@ class CharacterDTO(MarvelResourceDTO):
     description: Optional[str] = None
 
     def __str__(self):
-        return f'{self.id} - {self.name}'
+        return f"{self.id} - {self.name}"
 
     @property
     def short_description(self):
@@ -29,7 +28,7 @@ class CharacterDTO(MarvelResourceDTO):
 
     @property
     def twitter_status(self):
-        status = f'Did you know about {self.name} ?\n'
+        status = f"Did you know about {self.name} ?\n"
         status += self.build_links_label()
 
         return status

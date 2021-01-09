@@ -2,7 +2,6 @@ import tweepy
 
 
 class TwitterAPI:
-
     def __init__(
         self,
         consumer_api_key,
@@ -17,8 +16,7 @@ class TwitterAPI:
 
     def update_status(self, status, in_reply_to_status_id=None):
         return self.api.update_status(
-            status,
-            in_reply_to_status_id=in_reply_to_status_id,
+            status, in_reply_to_status_id=in_reply_to_status_id
         )
 
     def update_with_media(self, status, filename, file, in_reply_to_status_id=None):
@@ -27,7 +25,7 @@ class TwitterAPI:
             filename=filename,
             status=status,
             file=file,
-            in_reply_to_status_id=in_reply_to_status_id
+            in_reply_to_status_id=in_reply_to_status_id,
         )
 
     def get_timeline(self):

@@ -1,14 +1,21 @@
-build:
-	docker build -t marvel-bot .
-
-reset:
-	docker rm marvelbot
-
-start:
-	docker run --name marvelbot -d marvel-bot
-
 test:
 	poetry run pytest
+
+lint:
+	pre-commit run --all-files
+
+docker-build:
+	docker build -t marvel-bot .
+
+docker-reset:
+	docker rm marvelbot
+
+docker-start:
+	docker run --name marvelbot -d marvel-bot
+
+clean:
+	find . -iname '*.pyc' -delete
+	rm -rf .pytest_cache
 
 export:
 	git archive master | gzip > latest.tgz
