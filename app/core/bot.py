@@ -1,7 +1,8 @@
+import random
 import time
 
 import schedule
-import random
+
 from app.core.jobs import CharactersJob, ComicsJob, EventsJob
 from app.twitter.api import TwitterAPI
 from app.utils.mixins import LoggerMixin
