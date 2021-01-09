@@ -10,6 +10,9 @@ docker-build:
 docker-reset:
 	docker rm marvelbot
 
+docker-test:
+	docker exec -it marvel-bot pytest
+
 docker-start:
 	docker run --name marvelbot -d marvel-bot
 
