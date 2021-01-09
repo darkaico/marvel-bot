@@ -1,11 +1,7 @@
-from app.core.bot import MarvelBot
+from . import MarvelJob
 
 
-class EventsBot(MarvelBot):
-
-    # Every 7 days
-    tweet_interval = 60 * 60 * 24 * 7
-
+class EventsJob(MarvelJob):
     def _get_random_event(self):
         marvel_event = self.marvel_api.get_random_event()
         if marvel_event.thumbnail.is_available():
@@ -13,7 +9,7 @@ class EventsBot(MarvelBot):
 
         return self._get_random_event()
 
-    def tweet(self):
+    def execute(self):
         marvel_event = self._get_random_event()
 
         tw_status = "🎉🎉🎉 Weekly Event 🎉🎉🎉\n"
