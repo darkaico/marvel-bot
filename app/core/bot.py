@@ -1,10 +1,12 @@
 import time
 
 import schedule
-
+import random
 from app.core.jobs import CharactersJob, ComicsJob, EventsJob
 from app.twitter.api import TwitterAPI
 from app.utils.mixins import LoggerMixin
+
+HI_PHRASES = ["Holly Molly!", "Saturday of marvel movies!", "Stay calm and assemble"]
 
 
 class MarvelBot(LoggerMixin):
@@ -29,4 +31,4 @@ class MarvelBot(LoggerMixin):
             time.sleep(1)
 
     def _say_hi(self):
-        TwitterAPI.instance().update_status("Saturday of marvel movies!")
+        TwitterAPI.instance().update_status(random.choice(HI_PHRASES))
