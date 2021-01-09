@@ -2,9 +2,9 @@ import time
 
 from dotenv import load_dotenv
 
-from app.core import CharactersBot, ComicsBot, EventsBot
-
 load_dotenv()
+
+from app.core import CharactersBot, ComicsBot, EventsBot
 
 
 def sleep_hours(hours: int):

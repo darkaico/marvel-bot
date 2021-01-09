@@ -1,17 +1,17 @@
+import os
 import tweepy
+from app.utils.singleton import SingletonMixin
 
 
-class TwitterAPI:
+class TwitterAPI(SingletonMixin):
+    API_KEY = os.getenv("TW_API_KEY")
+    SECRET_KEY = os.getenv("TW_SECRET_KEY")
+    ACCESS_TOKEN = os.getenv("TW_ACCESS_TOKEN")
+    ACCESS_SECRET_TOKEN = os.getenv("TW_ACCESS_TOKEN_SECRET")
 
-    def __init__(
-        self,
-        consumer_api_key,
-        consumer_api_secret_key,
-        access_token,
-        access_token_secret,
-    ):
-        auth = tweepy.OAuthHandler(consumer_api_key, consumer_api_secret_key)
-        auth.set_access_token(access_token, access_token_secret)
+    def __init__(self):
+        auth = tweepy.OAuthHandler(self.API_KEY, self.SECRET_KEY)
+        auth.set_access_token(self.ACCESS_TOKEN, self.ACCESS_SECRET_TOKEN)
 
         self.api = tweepy.API(auth)
 
@@ -27,7 +27,7 @@ class TwitterAPI:
             filename=filename,
             status=status,
             file=file,
-            in_reply_to_status_id=in_reply_to_status_id
+            in_reply_to_status_id=in_reply_to_status_id,
         )
 
     def get_timeline(self):

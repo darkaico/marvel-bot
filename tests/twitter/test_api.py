@@ -5,15 +5,7 @@ from app.twitter.api import TwitterAPI
 
 @pytest.fixture
 def twitter_api_mock(monkeypatch):
-
-    twitter_api = TwitterAPI(
-        consumer_api_key='',
-        consumer_api_secret_key='',
-        access_token='',
-        access_token_secret='',
-    )
-
-    return twitter_api
+    return TwitterAPI()
 
 
 def test_get_timeline(twitter_api_mock):
@@ -22,19 +14,15 @@ def test_get_timeline(twitter_api_mock):
 
 
 def test_api_update_status(twitter_api_mock):
-    status = 'Hola amigos'
+    status = "Hola amigos"
 
-    assert twitter_api_mock.update_status(status).text == 'Hola amigos'
+    assert twitter_api_mock.update_status(status).text == "Hola amigos"
 
 
 def test_api_update_with_media(twitter_api_mock):
-    status = 'Twitt with media'
+    status = "Twitt with media"
 
-    assert twitter_api_mock.update_with_media(
-        status=status,
-        filename='',
-        file=None
-    ).text == status
+    assert twitter_api_mock.update_with_media(status=status, filename="", file=None).text == status
 
 
 def test_api_destroy_status(twitter_api_mock):

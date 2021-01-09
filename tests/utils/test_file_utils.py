@@ -8,10 +8,9 @@ from tests.conftest import MockResponse
 
 
 def test_file(monkeypatch):
-
     def mock_get_content(url):
-        return MockResponse(content=None)
+        return MockResponse(content=None, status_code=200)
 
-    monkeypatch.setattr(requests, 'get', mock_get_content)
+    monkeypatch.setattr(requests, "get", mock_get_content)
 
-    assert isinstance(file_utils.build_image_from_url('url'), BytesIO)
+    assert isinstance(file_utils.build_image_from_url("url"), BytesIO)
