@@ -2,7 +2,7 @@ import time
 
 from dotenv import load_dotenv
 
-from app.bot import CharactersBot, ComicsBot, EventsBot
+from app.core import CharactersBot, ComicsBot, EventsBot
 
 load_dotenv()
 

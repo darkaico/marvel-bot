@@ -2,7 +2,7 @@ import time
 
 import pytest
 
-from app.bot.base import MarvelBot
+from app.core.bot import MarvelBot
 
 
 @pytest.fixture

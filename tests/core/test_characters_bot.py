@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.bot import CharactersBot
+from app.core import CharactersBot
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
 
