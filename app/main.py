@@ -1,13 +1,14 @@
-from dotenv import load_dotenv
+from app.core.bot import MarvelBot
 
-load_dotenv()
+
+def start_bot():
+
+    MarvelBot().start()
 
 
 def init():
     if __name__ == "__main__":
-        from app.core.bot import MarvelBot
-
-        MarvelBot().run()
+        start_bot()
 
 
 init()

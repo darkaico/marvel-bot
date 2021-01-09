@@ -1,7 +1,7 @@
-from . import MarvelJob
+from .base import MarvelJob
 
 
-class CharacterJob(MarvelJob):
+class CharactersJob(MarvelJob):
     def _get_random_character(self):
         marvel_character = self.marvel_api.get_random_character()
 
@@ -18,7 +18,7 @@ class CharacterJob(MarvelJob):
 
         self.logger.info(f"Tweet: {tw_status}")
 
-        tw_status = twitter_api.update_with_media(
+        self.twitter_api.update_with_media(
             status=tw_status,
             filename=marvel_character.thumbnail.name,
             file=marvel_character.thumbnail.image_data,

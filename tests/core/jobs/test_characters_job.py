@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.core import CharactersBot
+from app.core.jobs import CharactersJob
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
 
@@ -48,40 +48,40 @@ def invalid_character():
 
 
 @pytest.fixture
-def characters_bot(mocker, valid_character):
+def characters_job(mocker, valid_character):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
 
     MarvelAPI.get_random_character.side_effect = [valid_character]
 
-    return CharactersBot()
+    return CharactersJob()
 
 
 @pytest.fixture
-def characters_bot_no_image_first_time(mocker, valid_character, invalid_character):
+def characters_job_no_image_first_time(mocker, valid_character, invalid_character):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
 
     MarvelAPI.get_random_character.side_effect = [invalid_character, valid_character]
 
-    return CharactersBot()
+    return CharactersJob()
 
 
-def test_get_random_character_valid(characters_bot):
+def test_get_random_character_valid(characters_job):
 
-    character = characters_bot._get_random_character()
-
-    assert character.thumbnail.is_available()
-
-
-def test_get_random_character_first_invalid(characters_bot_no_image_first_time):
-
-    character = characters_bot_no_image_first_time._get_random_character()
+    character = characters_job._get_random_character()
 
     assert character.thumbnail.is_available()
 
 
-def test_tweet(characters_bot, mocker):
+def test_get_random_character_first_invalid(characters_job_no_image_first_time):
+
+    character = characters_job_no_image_first_time._get_random_character()
+
+    assert character.thumbnail.is_available()
+
+
+def test_tweet(characters_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
 
-    characters_bot.tweet()
+    characters_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()

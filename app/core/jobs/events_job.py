@@ -1,4 +1,4 @@
-from . import MarvelJob
+from .base import MarvelJob
 
 
 class EventsJob(MarvelJob):

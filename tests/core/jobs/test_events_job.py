@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.core import EventsBot
+from app.core.jobs import EventsJob
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
 
@@ -48,39 +48,39 @@ def invalid_event():
 
 
 @pytest.fixture
-def events_bot(mocker, valid_event):
+def events_job(mocker, valid_event):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
 
     MarvelAPI.get_random_event.side_effect = [valid_event]
 
-    return EventsBot()
+    return EventsJob()
 
 
 @pytest.fixture
-def events_bot_no_image_first_time(mocker, valid_event, invalid_event):
+def events_job_no_image_first_time(mocker, valid_event, invalid_event):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
 
     MarvelAPI.get_random_event.side_effect = [invalid_event, valid_event]
 
-    return EventsBot()
+    return EventsJob()
 
 
-def test_get_random_event(events_bot):
-    event = events_bot._get_random_event()
-
-    assert event.thumbnail.is_available()
-
-
-def test_get_random_event_first_invalid(events_bot_no_image_first_time):
-
-    event = events_bot_no_image_first_time._get_random_event()
+def test_get_random_event(events_job):
+    event = events_job._get_random_event()
 
     assert event.thumbnail.is_available()
 
 
-def test_tweet(events_bot, mocker):
+def test_get_random_event_first_invalid(events_job_no_image_first_time):
+
+    event = events_job_no_image_first_time._get_random_event()
+
+    assert event.thumbnail.is_available()
+
+
+def test_tweet(events_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
 
-    events_bot.tweet()
+    events_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()
