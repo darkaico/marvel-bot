@@ -1,15 +1,11 @@
 import time
 
 from app import main
-from app.bots import (
-    CharactersBot,
-    ComicsBot,
-    EventsBot
-)
+from app.bot import CharactersBot, ComicsBot, EventsBot
 
 
 def test_init(mocker):
-    mocker.patch('app.main.start_bots')
+    mocker.patch("app.main.start_bots")
     mocker.patch.object(main, "__name__", "__main__")
 
     main.init()
@@ -18,10 +14,10 @@ def test_init(mocker):
 
 
 def test_start_bots(mocker):
-    mocker.patch('app.bots.CharactersBot.start')
-    mocker.patch('app.bots.EventsBot.start')
-    mocker.patch('app.bots.ComicsBot.start')
-    mocker.patch('time.sleep')
+    mocker.patch("app.bot.CharactersBot.start")
+    mocker.patch("app.bot.EventsBot.start")
+    mocker.patch("app.bot.ComicsBot.start")
+    mocker.patch("time.sleep")
 
     main.start_bots()
 

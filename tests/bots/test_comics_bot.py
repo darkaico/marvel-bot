@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.bots import ComicsBot
+from app.bot import ComicsBot
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
 
@@ -10,7 +10,7 @@ from app.twitter.api import TwitterAPI
 @dataclass
 class MockAvailableThumbnail:
 
-    name: str = ''
+    name: str = ""
     image_data: object = None
 
     def is_available(self):
@@ -20,7 +20,7 @@ class MockAvailableThumbnail:
 @dataclass
 class MockNotAvailableThumbnail:
 
-    name: str = ''
+    name: str = ""
     image_data: object = None
 
     def is_available(self):
@@ -34,26 +34,22 @@ class MockComic:
 
     @property
     def twitter_status(self):
-        return 'Tweet'
+        return "Tweet"
 
 
 @pytest.fixture
 def valid_comic():
-    return MockComic(
-        thumbnail=MockAvailableThumbnail()
-    )
+    return MockComic(thumbnail=MockAvailableThumbnail())
 
 
 @pytest.fixture
 def invalid_comic():
-    return MockComic(
-        thumbnail=MockNotAvailableThumbnail()
-    )
+    return MockComic(thumbnail=MockNotAvailableThumbnail())
 
 
 @pytest.fixture
 def comics_bot(mocker, valid_comic):
-    mocker.patch('app.marvel.api.MarvelAPI.get_random_comic')
+    mocker.patch("app.marvel.api.MarvelAPI.get_random_comic")
 
     MarvelAPI.get_random_comic.side_effect = [valid_comic]
 
@@ -62,7 +58,7 @@ def comics_bot(mocker, valid_comic):
 
 @pytest.fixture
 def comics_bot_no_image_first_time(mocker, valid_comic, invalid_comic):
-    mocker.patch('app.marvel.api.MarvelAPI.get_random_comic')
+    mocker.patch("app.marvel.api.MarvelAPI.get_random_comic")
 
     MarvelAPI.get_random_comic.side_effect = [invalid_comic, valid_comic]
 
@@ -83,7 +79,7 @@ def test_get_random_comic_first_invalid(comics_bot_no_image_first_time):
 
 
 def test_tweet(comics_bot, mocker):
-    mocker.patch('app.twitter.api.TwitterAPI.update_with_media')
+    mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
 
     comics_bot.tweet()
 

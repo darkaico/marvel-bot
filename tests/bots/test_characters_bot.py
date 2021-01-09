@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.bots import CharactersBot
+from app.bot import CharactersBot
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
 
@@ -10,7 +10,7 @@ from app.twitter.api import TwitterAPI
 @dataclass
 class MockAvailableThumbnail:
 
-    name: str = ''
+    name: str = ""
     image_data: object = None
 
     def is_available(self):
@@ -20,7 +20,7 @@ class MockAvailableThumbnail:
 @dataclass
 class MockNotAvailableThumbnail:
 
-    name: str = ''
+    name: str = ""
     image_data: object = None
 
     def is_available(self):
@@ -34,26 +34,22 @@ class MockCharacter:
 
     @property
     def twitter_status(self):
-        return 'Tweet'
+        return "Tweet"
 
 
 @pytest.fixture
 def valid_character():
-    return MockCharacter(
-        thumbnail=MockAvailableThumbnail()
-    )
+    return MockCharacter(thumbnail=MockAvailableThumbnail())
 
 
 @pytest.fixture
 def invalid_character():
-    return MockCharacter(
-        thumbnail=MockNotAvailableThumbnail()
-    )
+    return MockCharacter(thumbnail=MockNotAvailableThumbnail())
 
 
 @pytest.fixture
 def characters_bot(mocker, valid_character):
-    mocker.patch('app.marvel.api.MarvelAPI.get_random_character')
+    mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
 
     MarvelAPI.get_random_character.side_effect = [valid_character]
 
@@ -62,7 +58,7 @@ def characters_bot(mocker, valid_character):
 
 @pytest.fixture
 def characters_bot_no_image_first_time(mocker, valid_character, invalid_character):
-    mocker.patch('app.marvel.api.MarvelAPI.get_random_character')
+    mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
 
     MarvelAPI.get_random_character.side_effect = [invalid_character, valid_character]
 
@@ -84,7 +80,7 @@ def test_get_random_character_first_invalid(characters_bot_no_image_first_time):
 
 
 def test_tweet(characters_bot, mocker):
-    mocker.patch('app.twitter.api.TwitterAPI.update_with_media')
+    mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
 
     characters_bot.tweet()
 

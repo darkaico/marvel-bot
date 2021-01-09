@@ -2,17 +2,13 @@ import time
 
 from dotenv import load_dotenv
 
-from app.bots import (
-    CharactersBot,
-    ComicsBot,
-    EventsBot
-)
+from app.bot import CharactersBot, ComicsBot, EventsBot
 
 load_dotenv()
 
 
 def sleep_hours(hours: int):
-    time.sleep(60*60*hours)
+    time.sleep(60 * 60 * hours)
 
 
 def start_bots():
