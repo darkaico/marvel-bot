@@ -1,11 +1,7 @@
-from app.core.bot import MarvelBot
+from .base import MarvelJob
 
 
-class ComicsBot(MarvelBot):
-
-    # Every 7 days
-    tweet_interval = 60 * 60 * 24 * 7
-
+class ComicsJob(MarvelJob):
     def _get_random_comic(self):
         marvel_comic = self.marvel_api.get_random_comic()
         if marvel_comic.thumbnail.is_available():
@@ -13,7 +9,7 @@ class ComicsBot(MarvelBot):
 
         return self._get_random_comic()
 
-    def tweet(self):
+    def execute(self):
         marvel_comic = self._get_random_comic()
 
         tw_status = "🎉🎉🎉 Weekly Comic 🎉🎉🎉\n"

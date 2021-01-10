@@ -1,28 +1,21 @@
-import time
-
 from app import main
-from app.core import CharactersBot, ComicsBot, EventsBot
+from app.core.bot import MarvelBot
 
 
 def test_init(mocker):
-    mocker.patch("app.main.start_bots")
+    mocker.patch("app.main.start_bot")
     mocker.patch.object(main, "__name__", "__main__")
 
     main.init()
 
-    main.start_bots.assert_called_once()
+    main.start_bot.assert_called_once()
 
 
-def test_start_bots(mocker):
-    mocker.patch("app.core.CharactersBot.start")
-    mocker.patch("app.core.EventsBot.start")
-    mocker.patch("app.core.ComicsBot.start")
-    mocker.patch("time.sleep")
+def test_start_bot(mocker):
+    mocker.patch("app.core.bot.MarvelBot._schedule_jobs")
+    mocker.patch("app.core.bot.MarvelBot._start_jobs")
 
-    main.start_bots()
+    main.start_bot()
 
-    CharactersBot.start.assert_called_once()
-    EventsBot.start.assert_called_once()
-    ComicsBot.start.assert_called_once()
-
-    time.sleep.assert_called()
+    MarvelBot._schedule_jobs.assert_called_once()
+    MarvelBot._start_jobs.assert_called_once()

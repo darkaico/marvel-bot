@@ -1,7 +1,7 @@
-from app.core.bot import MarvelBot
+from .base import MarvelJob
 
 
-class CharactersBot(MarvelBot):
+class CharactersJob(MarvelJob):
     def _get_random_character(self):
         marvel_character = self.marvel_api.get_random_character()
 
@@ -10,7 +10,7 @@ class CharactersBot(MarvelBot):
 
         return self._get_random_character()
 
-    def tweet(self):
+    def execute(self):
         marvel_character = self._get_random_character()
 
         tw_status = f"🎉🎉🎉 {self.weekday} Character 🎉🎉🎉\n"
@@ -18,7 +18,7 @@ class CharactersBot(MarvelBot):
 
         self.logger.info(f"Tweet: {tw_status}")
 
-        tw_status = self.twitter_api.update_with_media(
+        self.twitter_api.update_with_media(
             status=tw_status,
             filename=marvel_character.thumbnail.name,
             file=marvel_character.thumbnail.image_data,

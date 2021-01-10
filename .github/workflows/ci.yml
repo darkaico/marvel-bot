@@ -47,6 +47,7 @@ jobs:
           coverage report
 
   deploy:
+    needs: test
     if: contains(github.ref, 'refs/heads/master')
     name: deploy to cluster
     runs-on: ubuntu-latest

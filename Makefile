@@ -1,6 +1,9 @@
 test:
 	poetry run pytest
 
+test-coverage:
+	poetry run pytest --cov
+
 lint:
 	pre-commit run --all-files
 

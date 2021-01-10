@@ -1,43 +1,35 @@
-import calendar
-import datetime
 import random
 import time
-from threading import Thread
 
-from app.marvel.api import MarvelAPI
+import schedule
+
+from app.core.jobs import CharactersJob, ComicsJob, EventsJob
 from app.twitter.api import TwitterAPI
 from app.utils.mixins import LoggerMixin
 
+HI_PHRASES = ["Holly Molly!", "Saturday of marvel movies!", "Stay calm and assemble"]
 
-class MarvelBot(LoggerMixin, Thread):
 
-    tweet_interval = 60 * 60 * 24
-    logger_name = "marvel_bots"
+class MarvelBot(LoggerMixin):
+    logger_name = "marvel_bot"
 
-    def __init__(self):
-        Thread.__init__(self)
+    def start(self):
+        self._say_hi()
+        self._schedule_jobs()
+        self._start_jobs()
 
-        self.marvel_api = MarvelAPI.instance()
-        self.twitter_api = TwitterAPI.instance()
+    def _schedule_jobs(self):
+        self.logger.info("Scheduling jobs")
 
-    @property
-    def weekday(self):
-        return calendar.day_name[datetime.datetime.now().weekday()]
+        schedule.every().day.at("10:30").do(CharactersJob().execute)
+        schedule.every().wednesday.at("13:15").do(ComicsJob().execute)
+        schedule.every().friday.at("18:00").do(EventsJob().execute)
 
-    def generate_tweet_time(self):
-        random_time = 60 * random.randint(-60, 60)
-
-        return self.tweet_interval + random_time
-
-    def wait_for_tweet(self):
-        self.logger.info(f"sleeping {self.tweet_interval} hours...")
-
-        time.sleep(self.generate_tweet_time())
-
-    def run(self):
+    def _start_jobs(self):
+        self.logger.info("Starting jobs")
         while True:
-            self.tweet()
-            self.wait_for_tweet()
+            schedule.run_pending()
+            time.sleep(1)
 
-    def tweet(self):
-        raise NotImplementedError()
+    def _say_hi(self):
+        TwitterAPI.instance().update_status(random.choice(HI_PHRASES))
