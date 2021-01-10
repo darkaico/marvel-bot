@@ -1,5 +1,6 @@
 import random
 import time
+from datetime import datetime
 
 import schedule
 
@@ -7,7 +8,7 @@ from app.core.jobs import CharactersJob, ComicsJob, EventsJob
 from app.twitter.api import TwitterAPI
 from app.utils.mixins import LoggerMixin
 
-HI_PHRASES = ["Holly Molly!", "Saturday of marvel movies!", "Stay calm and assemble"]
+HI_PHRASES = ["Holly Molly!", "Marvel movies time!", "Stay calm and assemble!"]
 
 
 class MarvelBot(LoggerMixin):
@@ -32,4 +33,13 @@ class MarvelBot(LoggerMixin):
             time.sleep(1)
 
     def _say_hi(self):
-        TwitterAPI.instance().update_status(random.choice(HI_PHRASES))
+        now = datetime.now()
+        time_string = now.strftime("%H:%M")
+        date_string = now.strftime("%d/%m/%Y")
+        phrase = random.choice(HI_PHRASES)
+
+        status = (
+            f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
+        )
+
+        TwitterAPI.instance().update_status(status)

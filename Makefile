@@ -1,3 +1,7 @@
+
+start:
+	python -m app.main
+
 test:
 	poetry run pytest
 
