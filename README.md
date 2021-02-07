@@ -12,7 +12,7 @@ Could it be see in action [here](https://twitter.com/marvelibot)
 ## Libraries
 
 - [Tweepy](https://www.tweepy.org/): For Twitter posts and interactions
-- [Requests](https://requests.readthedocs.io/en/master/): for Marvel API fetch
+- [Requests](https://requests.readthedocs.io/en/master/): for Marvel API fetch and Telegram calls.
 - [Dacite](https://github.com/konradhalas/dacite): for API responses to dataclasses objects
 - [Python dotenv](https://github.com/theskumar/python-dotenv): simplifies env var uses.
 - [Pytest](https://docs.pytest.org/en/latest/): just it, test it.

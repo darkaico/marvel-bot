@@ -2,13 +2,14 @@ import requests
 import os
 
 from app.utils.singleton import SingletonMixin
+from app.utils.mixins import LoggerMixin
 
 
 class TelegramConnectionException(Exception):
     pass
 
 
-class TelegramApi(SingletonMixin):
+class TelegramApi(SingletonMixin, LoggerMixin):
     BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
     DEFAULT_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
@@ -24,7 +25,9 @@ class TelegramApi(SingletonMixin):
         response = requests.get(f"{self.base_url}/sendMessage", params=params)
 
         if response.status_code != 200:
-            raise TelegramConnectionException(response)
+            error_content = response.content
+            self.logger.error(error_content)
+            raise TelegramConnectionException(error_content)
 
         return response.json()
 

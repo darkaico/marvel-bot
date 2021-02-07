@@ -9,7 +9,7 @@ class LoggerMixin:
     @property
     def logger(self):
         if not self._logger:
-            logger_name = self.logger_name
+            logger_name = self.logger_name or "marvel_bot"
             if not logger_name:
                 logger_name = self.__class__.__name__.lower()
 

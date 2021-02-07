@@ -12,8 +12,6 @@ HI_PHRASES = ["Holly Molly!", "Marvel movies time!", "Stay calm and assemble!"]
 
 
 class MarvelBot(LoggerMixin):
-    logger_name = "marvel_bot"
-
     def start(self):
         self._say_hi()
         self._schedule_jobs()
@@ -38,8 +36,6 @@ class MarvelBot(LoggerMixin):
         date_string = now.strftime("%d/%m/%Y")
         phrase = random.choice(HI_PHRASES)
 
-        status = (
-            f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
-        )
+        status = f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
 
         TwitterAPI.instance().update_status(status)

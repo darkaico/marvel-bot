@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "marvel-bot"
-version = "0.5.0"
+version = "0.7.0"
 description = "Simple bot that fetch data from Marvel API and tweet every X amount of time information of a random character."
 authors = ["Ariel Parra <darkaico@gmail.com>"]
 license = "Apache-2.0"
