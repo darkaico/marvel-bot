@@ -48,11 +48,11 @@ jobs:
 
   deploy:
     needs: test
-    if: contains(github.ref, 'refs/heads/master')
+    if: contains(github.ref, 'refs/heads/main')
     name: deploy to cluster
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: build and push to docker
         uses: docker/build-push-action@v1
         with:
