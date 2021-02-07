@@ -1,5 +1,6 @@
 import pytest
 import requests
+
 from app.telegram.api import TelegramAPI, TelegramConnectionException
 from tests.conftest import MockResponse
 
@@ -15,7 +16,9 @@ def test_telegram_base_url(telegram_api_mock):
 
 
 def test_telegram_custom_exception(telegram_api_mock, monkeypatch):
-    monkeypatch.setattr(requests, "get", lambda url, params: MockResponse(status_code=400))
+    monkeypatch.setattr(
+        requests, "get", lambda url, params: MockResponse(status_code=400)
+    )
 
     with pytest.raises(TelegramConnectionException):
         telegram_api_mock.send_message("things are not going well")
@@ -24,7 +27,7 @@ def test_telegram_custom_exception(telegram_api_mock, monkeypatch):
 def test_send_message_default_chat_id(telegram_api_mock, mocker):
     mocker.patch.object(requests, "get", return_value=MockResponse(status_code=200))
 
-    response = telegram_api_mock.send_message("marvelouso")
+    telegram_api_mock.send_message("marvelouso")
 
     expected_url = f"{telegram_api_mock.base_url}/sendMessage"
     expected_params = {
@@ -38,7 +41,7 @@ def test_send_message_default_chat_id(telegram_api_mock, mocker):
 def test_send_message_explicit_chat_id(telegram_api_mock, mocker):
     mocker.patch.object(requests, "get", return_value=MockResponse(status_code=200))
 
-    response = telegram_api_mock.send_message("que tal?", "CHAT78")
+    telegram_api_mock.send_message("que tal?", "CHAT78")
 
     expected_url = f"{telegram_api_mock.base_url}/sendMessage"
     expected_params = {

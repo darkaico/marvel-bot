@@ -4,8 +4,8 @@ import pytest
 
 from app.core.jobs import CharactersJob
 from app.marvel.api import MarvelAPI
-from app.twitter.api import TwitterAPI
 from app.telegram.api import TelegramAPI
+from app.twitter.api import TwitterAPI
 
 
 @dataclass

@@ -42,4 +42,6 @@ def test_wolverine_data(wolverine_dto):
 
 def test_wolverine_status(wolverine_dto):
 
-    assert "Did you know about Wolverine ?" in wolverine_dto.build_twitter_status("title")
+    assert "Did you know about Wolverine ?" in wolverine_dto.build_twitter_status(
+        "title"
+    )

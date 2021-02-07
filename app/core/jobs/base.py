@@ -2,9 +2,9 @@ import calendar
 import datetime
 
 from app.marvel.api import MarvelAPI
+from app.telegram.api import TelegramAPI
 from app.twitter.api import TwitterAPI
 from app.utils.mixins import LoggerMixin
-from app.telegram.api import TelegramAPI
 
 
 class MarvelJob(LoggerMixin):

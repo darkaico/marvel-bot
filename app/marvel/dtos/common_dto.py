@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 
 from app.marvel.constants import LinkTypeEnum
-from app.utils import file_utils
-from app.utils import string_utils
+from app.utils import file_utils, string_utils
 
 
 @dataclass

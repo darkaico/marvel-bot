@@ -36,6 +36,8 @@ class MarvelBot(LoggerMixin):
         date_string = now.strftime("%d/%m/%Y")
         phrase = random.choice(HI_PHRASES)
 
-        status = f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
+        status = (
+            f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
+        )
 
         TwitterAPI.instance().update_status(status)

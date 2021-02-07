@@ -1,8 +1,9 @@
-import requests
 import os
 
-from app.utils.singleton import SingletonMixin
+import requests
+
 from app.utils.mixins import LoggerMixin
+from app.utils.singleton import SingletonMixin
 
 
 class TelegramConnectionException(Exception):
@@ -47,7 +48,9 @@ class TelegramAPI(SingletonMixin, LoggerMixin):
             }
             with requests.Session() as s:
                 response = s.post(
-                    f"{self.base_url}/sendDocument", data={"chat_id": chat_id}, files=files
+                    f"{self.base_url}/sendDocument",
+                    data={"chat_id": chat_id},
+                    files=files,
                 )
 
             if response.status_code != 200:
