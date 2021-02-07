@@ -29,7 +29,7 @@ def test_event_str(event_dto):
 
 def test_event_status(event_dto):
 
-    assert 'What do you know about "Age of Apocalypse"' in event_dto.twitter_status
+    assert 'What do you know about "Age of Apocalypse"' in event_dto.build_twitter_status("title")
 
 
 def test_short_description(event_dto):

@@ -31,7 +31,7 @@ def test_comic_twitter_status(comic_dto):
 
     assert (
         'Have you read "X-Men: Days of Future Past (Trade Paperback)"?'
-        in comic_dto.twitter_status
+        in comic_dto.build_twitter_status("title")
     )
 
 

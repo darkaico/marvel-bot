@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from app.marvel.constants import LinkTypeEnum
 from app.utils import file_utils
+from app.utils import string_utils
 
 
 @dataclass
@@ -15,7 +16,9 @@ class ImageDTO:
 
     @property
     def url(self):
-        return f"{self.path}.{self.extension}"
+        url = f"{self.path}.{self.extension}"
+
+        return string_utils.remove_params(url)
 
     @property
     def name(self):
@@ -35,3 +38,7 @@ class MarvelLinkDTO:
     @property
     def link_type(self):
         return LinkTypeEnum(self.type)
+
+    @property
+    def clean_url(self):
+        return string_utils.remove_params(self.url)

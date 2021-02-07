@@ -9,7 +9,7 @@ class TelegramConnectionException(Exception):
     pass
 
 
-class TelegramApi(SingletonMixin, LoggerMixin):
+class TelegramAPI(SingletonMixin, LoggerMixin):
     BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
     DEFAULT_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 

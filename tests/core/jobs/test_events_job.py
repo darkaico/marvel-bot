@@ -5,6 +5,7 @@ import pytest
 from app.core.jobs import EventsJob
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
+from app.telegram.api import TelegramAPI
 
 
 @dataclass
@@ -32,9 +33,11 @@ class MockEvent:
 
     thumbnail: object
 
-    @property
-    def twitter_status(self):
+    def build_twitter_status(self, title):
         return "Tweet"
+
+    def build_telegram_status(self, title):
+        return "Markdown"
 
 
 @pytest.fixture
@@ -80,7 +83,9 @@ def test_get_random_event_first_invalid(events_job_no_image_first_time):
 
 def test_tweet(events_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
+    mocker.patch("app.telegram.api.TelegramAPI.send_message")
 
     events_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()
+    TelegramAPI.send_message.assert_called_once()

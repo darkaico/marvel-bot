@@ -1,12 +1,12 @@
 import pytest
 import requests
-from app.telegram.api import TelegramApi, TelegramConnectionException
+from app.telegram.api import TelegramAPI, TelegramConnectionException
 from tests.conftest import MockResponse
 
 
 @pytest.fixture
 def telegram_api_mock():
-    return TelegramApi.instance()
+    return TelegramAPI.instance()
 
 
 def test_telegram_base_url(telegram_api_mock):

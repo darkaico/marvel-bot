@@ -5,6 +5,7 @@ import pytest
 from app.core.jobs import ComicsJob
 from app.marvel.api import MarvelAPI
 from app.twitter.api import TwitterAPI
+from app.telegram.api import TelegramAPI
 
 
 @dataclass
@@ -32,9 +33,11 @@ class MockComic:
 
     thumbnail: object
 
-    @property
-    def twitter_status(self):
+    def build_twitter_status(self, title):
         return "Tweet"
+
+    def build_telegram_status(self, title):
+        return "Markdown"
 
 
 @pytest.fixture
@@ -80,7 +83,9 @@ def test_get_random_comic_first_invalid(comics_job_no_image_first_time):
 
 def test_tweet(comics_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
+    mocker.patch("app.telegram.api.TelegramAPI.send_message")
 
     comics_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()
+    TelegramAPI.send_message.assert_called_once()

@@ -50,21 +50,44 @@ class MarvelResourceDTO:
         links_label = ""
 
         if self.wiki_link:
-            links_label += f"\n* Wiki: {self.wiki_link.url}"
+            links_label += f"\n🔗 Wiki: {self.wiki_link.clean_url}"
 
         if self.detail_link:
-            links_label += f"\n* Details: {self.detail_link.url}"
+            links_label += f"\n🔗 Details: {self.detail_link.clean_url}"
 
         if self.comic_link:
-            links_label += f"\n* Comics: {self.comic_link.url}"
+            links_label += f"\n🔗 Comics: {self.comic_link.clean_url}"
 
         if self.purchase_link:
-            links_label += f"\n* Purchase: {self.purchase_link.url}"
+            links_label += f"\n🔗 Purchase: {self.purchase_link.clean_url}"
 
         if self.reader_link:
-            links_label += f"\n* Reader: {self.reader_link.url}"
+            links_label += f"\n🔗 Reader: {self.reader_link.clean_url}"
 
         if self.in_app_link:
-            links_label += f"\n* In App Link: {self.in_app_link.url}"
+            links_label += f"\n🔗 In App Link: {self.in_app_link.clean_url}"
+
+        return links_label
+
+    def build_markdown_links(self):
+        links_label = ""
+
+        if self.wiki_link:
+            links_label += f"\n🔗 [Wiki]({self.wiki_link.clean_url})"
+
+        if self.detail_link:
+            links_label += f"\n🔗 [Details]({self.detail_link.clean_url})"
+
+        if self.comic_link:
+            links_label += f"\n🔗 [Comics]({self.comic_link.clean_url})"
+
+        if self.purchase_link:
+            links_label += f"\n🔗 [Purchase]({self.purchase_link.clean_url})"
+
+        if self.reader_link:
+            links_label += f"\n🔗 [Reader]({self.reader_link.clean_url})"
+
+        if self.in_app_link:
+            links_label += f"\n🔗 [In App Link]({self.in_app_link.clean_url})"
 
         return links_label

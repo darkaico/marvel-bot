@@ -19,9 +19,16 @@ class ComicDTO(MarvelResourceDTO):
     def short_description(self):
         return string_utils.limit_text(self.description)
 
-    @property
-    def twitter_status(self):
-        status = f'Have you read "{self.title}"?\n'
+    def build_twitter_status(self, title):
+        status = f"{title}\n\n"
+        status += f'Have you read "{self.title}"?\n'
         status += self.build_links_label()
+
+        return status
+
+    def build_telegram_status(self, title):
+        status = f"*{title}*\n\n"
+        status += f'Have you read "{self.title}"?\n'
+        status += self.build_markdown_links()
 
         return status
