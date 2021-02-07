@@ -3,11 +3,15 @@
 # Marvel Bot
 
 Simple bot that fetch data from [Marvel API](https://developer.marvel.com/docs#!/public)
-and tweet every X amount of time information of a random character.
+and broadcaste information into Twitter and a Telegram channel
 
 ## Twitter Profile
 
 Could it be see in action [here](https://twitter.com/marvelibot)
+
+## Telegram Channel
+
+Join in this [link](https://t.me/marveldata)
 
 ## Libraries
 
