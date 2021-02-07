@@ -1,5 +1,6 @@
 from app import main
 from app.core.bot import MarvelBot
+from app.twitter.api import TwitterAPI
 
 
 def test_init(mocker):
@@ -14,8 +15,10 @@ def test_init(mocker):
 def test_start_bot(mocker):
     mocker.patch("app.core.bot.MarvelBot._schedule_jobs")
     mocker.patch("app.core.bot.MarvelBot._start_jobs")
+    mocker.patch("app.twitter.api.TwitterAPI.update_status")
 
     main.start_bot()
 
     MarvelBot._schedule_jobs.assert_called_once()
     MarvelBot._start_jobs.assert_called_once()
+    TwitterAPI.update_status.assert_called_once()

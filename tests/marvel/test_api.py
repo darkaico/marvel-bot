@@ -9,7 +9,7 @@ from tests.fixtures.fixtures_builder import get_single_resource_response
 
 @pytest.fixture
 def marvel_api_mock():
-    return MarvelAPI()
+    return MarvelAPI.instance()
 
 
 def test_marvel_api_hash(marvel_api_mock):
