@@ -6,6 +6,7 @@ import schedule
 
 from app.core.jobs import CharactersJob, ComicsJob, EventsJob
 from app.twitter.api import TwitterAPI
+from app.telegram.api import TelegramAPI
 from app.utils.mixins import LoggerMixin
 
 HI_PHRASES = ["Holly Molly!", "Marvel movies time!", "Stay calm and assemble!"]
@@ -36,8 +37,7 @@ class MarvelBot(LoggerMixin):
         date_string = now.strftime("%d/%m/%Y")
         phrase = random.choice(HI_PHRASES)
 
-        status = (
-            f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
-        )
+        status = f"Wow {time_string} and today is {date_string}...\n\n{phrase}\n\n#wakingup"
 
         TwitterAPI.instance().update_status(status)
+        TelegramAPI.instance().send_message(status)

@@ -25,4 +25,4 @@ class EventsJob(MarvelJob):
             file=marvel_event.thumbnail.image_data,
         )
 
-        self.telegram_api.send_message(telegram_status, "879544620")
+        self.telegram_api.send_message(telegram_status)
