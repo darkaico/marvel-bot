@@ -17,6 +17,9 @@ docker-build:
 docker-reset:
 	docker rm marvelbot
 
+docker-pull:
+	docker pull darkaico/marvel-bot
+
 docker-start:
 	docker run --name marvelbot -d marvel-bot
 
