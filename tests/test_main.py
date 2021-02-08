@@ -1,7 +1,7 @@
 from app import main
 from app.core.bot import MarvelBot
-from app.twitter.api import TwitterAPI
 from app.telegram.api import TelegramAPI
+from app.twitter.api import TwitterAPI
 
 
 def test_init(mocker):
