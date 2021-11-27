@@ -51,6 +51,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
+          pwd
           make test
       # - name: Override Coverage Source Path for Sonar
       #   # run: sed -i "s|<source>/app</source>|<source>/github/workspace</source>|g" cover/coverage.xml
