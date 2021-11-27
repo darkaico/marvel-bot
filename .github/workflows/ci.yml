@@ -51,9 +51,12 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
+          pwd
           make test
-      - name: Override Coverage Source Path for Sonar
-        run: sed -i "s|<source>/app</source>|<source>/github/workspace</source>|g" cover/coverage.xml
+      - name: fix code coverage paths
+        run: |
+          sed -i 's/\/home\/runner\/work\/marvel-bot\/marvel-bot\//\/github\/workspace\//g' cover/coverage.xml
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
