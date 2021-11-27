@@ -24,9 +24,7 @@ class MarvelAPI(SingletonMixin):
         return time.time()
 
     def _generate_hash_token(self, ts: float) -> str:
-        return hashlib.md5(
-            f"{ts}{self.PRIVATE_KEY}{self.PUBLIC_KEY}".encode("utf-8")
-        ).hexdigest()
+        return hashlib.md5(f"{ts}{self.PRIVATE_KEY}{self.PUBLIC_KEY}".encode("utf-8")).hexdigest()
 
     def _build_api_url(
         self, resource: str, limit: int = marvel_constants.DEFAULT_API_LIMIT

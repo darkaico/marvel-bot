@@ -29,9 +29,7 @@ def mock_tweepy_api(monkeypatch):
 
         return MockTweet(id=fake.random_int(), text=status)
 
-    def mock_update_with_media(
-        self, status, filename, file, in_reply_to_status_id=None
-    ):
+    def mock_update_with_media(self, status, filename, file, in_reply_to_status_id=None):
 
         return MockTweet(id=fake.random_int(), text=status)
 

@@ -16,9 +16,7 @@ def test_telegram_base_url(telegram_api_mock):
 
 
 def test_telegram_custom_exception(telegram_api_mock, monkeypatch):
-    monkeypatch.setattr(
-        requests, "get", lambda url, params: MockResponse(status_code=400)
-    )
+    monkeypatch.setattr(requests, "get", lambda url, params: MockResponse(status_code=400))
 
     with pytest.raises(TelegramConnectionException):
         telegram_api_mock.send_message("things are not going well")
