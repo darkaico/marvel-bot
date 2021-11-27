@@ -1,5 +1,7 @@
 [![CI Actions Status](https://github.com/darkaico/marvel-bot/workflows/Marvel%20Bot%20CI/CD/badge.svg)](https://github.com/darkaico/marvel-bot/actions)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=darkaico_marvel-bot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=darkaico_marvel-bot)
+
 # Marvel Bot
 
 Simple bot that fetch data from [Marvel API](https://developer.marvel.com/docs#!/public)
