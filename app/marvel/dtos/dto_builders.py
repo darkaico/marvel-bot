@@ -20,9 +20,7 @@ def build_event_from_api_response(api_response: dict):
     return from_dict(
         data_class=EventDTO,
         data=event_data,
-        config=Config(
-            type_hooks={datetime: lambda x: datetime.strptime(x, "%Y-%m-%d %H:%M:%S")}
-        ),
+        config=Config(type_hooks={datetime: lambda x: datetime.strptime(x, "%Y-%m-%d %H:%M:%S")}),
     )
 
 
@@ -35,9 +33,7 @@ def build_events_from_api_response(events_response: dict):
                 data_class=EventDTO,
                 data=events_data,
                 config=Config(
-                    type_hooks={
-                        datetime: lambda x: datetime.strptime(x, "%Y-%m-%d %H:%M:%S")
-                    }
+                    type_hooks={datetime: lambda x: datetime.strptime(x, "%Y-%m-%d %H:%M:%S")}
                 ),
             )
         )
