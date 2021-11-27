@@ -28,7 +28,7 @@ def marvel_dto_with_urls():
         data={
             "id": 7,
             "thumbnail": {
-                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/477bcaef0f6cf",
                 "extension": "jpg",
             },
             "urls": [
@@ -48,7 +48,7 @@ def marvel_dtos():
         data={
             "id": 1,
             "thumbnail": {
-                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/487bcaef0f6cf",
                 "extension": "jpg",
             },
             "urls": [
@@ -61,7 +61,7 @@ def marvel_dtos():
         data={
             "id": 2,
             "thumbnail": {
-                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf",
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/60/497bcaef0f6cf",
                 "extension": "jpg",
             },
             "urls": [
