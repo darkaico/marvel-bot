@@ -27,5 +27,5 @@ clean:
 	find . -iname '*.pyc' -delete
 	rm -rf .pytest_cache
 
-export:
-	git archive master | gzip > latest.tgz
+update-packages:
+	poetry update
