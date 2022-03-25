@@ -59,6 +59,7 @@ jobs:
           sed -i 's/\/home\/runner\/work\/marvel-bot\/marvel-bot\//\/github\/workspace\//g' cover/coverage.xml
 
   sonarcloud:
+    needs: [test]
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
