@@ -54,13 +54,13 @@ jobs:
           pwd
           make test
 
-  scan:
-    runs-on: ubuntu-latest
-    steps:
       - name: fix code coverage paths
         run: |
           sed -i 's/\/home\/runner\/work\/marvel-bot\/marvel-bot\//\/github\/workspace\//g' cover/coverage.xml
 
+  scan:
+    runs-on: ubuntu-latest
+    steps:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
