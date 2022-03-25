@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v33
+        uses: actions/checkout@v3
       - name: Setup python environment
         uses: actions/setup-python@v3
         with:
@@ -24,7 +24,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v33
+      - uses: actions/checkout@v3
       - name: Setup python
         uses: actions/setup-python@v3
         with:
@@ -53,16 +53,19 @@ jobs:
           source .venv/bin/activate
           pwd
           make test
+
+  scan:
+    runs-on: ubuntu-latest
+    steps:
       - name: fix code coverage paths
         run: |
           sed -i 's/\/home\/runner\/work\/marvel-bot\/marvel-bot\//\/github\/workspace\//g' cover/coverage.xml
 
-  scan:
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
     needs: [lint, test, scan]
@@ -71,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v33
+        uses: actions/checkout@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
