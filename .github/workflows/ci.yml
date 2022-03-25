@@ -64,8 +64,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  deploy:
-    needs: [test, lint, scan]
+  build:
+    needs: [lint, test, scan]
     if: contains(github.ref, 'refs/heads/main')
     name: deploy to cluster
     runs-on: ubuntu-latest
