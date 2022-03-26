@@ -68,17 +68,32 @@ class MarvelAPI(SingletonMixin):
 
         return json_resource_response
 
-    def get_random_character(self) -> CharacterDTO:
+    def get_random_character(self, include_thumbnail: bool = True) -> CharacterDTO:
         json_response = self._get_random_resource_response("characters")
 
-        return dto_builders.build_character_from_api_response(json_response)
+        marvel_character = dto_builders.build_character_from_api_response(json_response)
 
-    def get_random_comic(self) -> ComicDTO:
+        if include_thumbnail and not marvel_character.thumbnail.is_available():
+            return self.get_random_character()
+
+        return marvel_character
+
+    def get_random_comic(self, include_thumbnail: bool = True) -> ComicDTO:
         json_response = self._get_random_resource_response("comics")
 
-        return dto_builders.build_comic_from_api_response(json_response)
+        marvel_comic = dto_builders.build_comic_from_api_response(json_response)
 
-    def get_random_event(self) -> EventDTO:
+        if include_thumbnail and not marvel_comic.thumbnail.is_available():
+            return self.get_random_comic()
+
+        return marvel_comic
+
+    def get_random_event(self, include_thumbnail: bool = True) -> EventDTO:
         json_response = self._get_random_resource_response("events")
 
-        return dto_builders.build_event_from_api_response(json_response)
+        marvel_event = dto_builders.build_event_from_api_response(json_response)
+
+        if include_thumbnail and not marvel_event.thumbnail.is_available():
+            return self.get_random_event()
+
+        return marvel_event

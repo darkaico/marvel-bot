@@ -1,21 +1,18 @@
 import pytest
 
 from app.marvel.dtos import dto_builders
-from tests.fixtures.fixtures_builder import get_comics_response
 
 
 @pytest.fixture
-def comics_dtos():
-    comics_response = get_comics_response()
+def comics_dtos(comics_response):
 
     return dto_builders.build_comics_from_api_response(comics_response)
 
 
 @pytest.fixture
-def comic_dto():
-    comic_response = get_comics_response()
+def comic_dto(comics_response):
 
-    return dto_builders.build_comic_from_api_response(comic_response)
+    return dto_builders.build_comic_from_api_response(comics_response)
 
 
 def test_comics_list(comics_dtos):

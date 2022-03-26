@@ -4,7 +4,6 @@ import requests
 from app.marvel.api import MarvelAPI
 from app.marvel.dtos import CharacterDTO, ComicDTO, EventDTO
 from tests.conftest import MockResponse
-from tests.fixtures.fixtures_builder import get_single_resource_response
 
 
 @pytest.fixture
@@ -89,25 +88,121 @@ def test_get_random_resource_response(marvel_api_mock, monkeypatch):
     assert isinstance(marvel_api_mock._get_random_resource_response("characters"), dict)
 
 
-def test_get_random_character(marvel_api_mock, monkeypatch):
-    monkeypatch.setattr(
-        marvel_api_mock, "_get_random_resource_response", get_single_resource_response
-    )
+def test_get_random_event_valid_first_time(marvel_api_mock, mocker, single_event_response):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [single_event_response]
 
-    assert isinstance(marvel_api_mock.get_random_character(), CharacterDTO)
+    event_dto = marvel_api_mock.get_random_event()
 
-
-def test_get_random_event(marvel_api_mock, monkeypatch):
-    monkeypatch.setattr(
-        marvel_api_mock, "_get_random_resource_response", get_single_resource_response
-    )
-
-    assert isinstance(marvel_api_mock.get_random_event(), EventDTO)
+    assert isinstance(event_dto, EventDTO)
+    assert event_dto.thumbnail.is_available()
 
 
-def test_get_random_comic(marvel_api_mock, monkeypatch):
-    monkeypatch.setattr(
-        marvel_api_mock, "_get_random_resource_response", get_single_resource_response
-    )
+def test_get_random_event_valid_second_time(
+    marvel_api_mock, mocker, single_event_response, single_event_no_thumbnail_response
+):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [
+        single_event_no_thumbnail_response,
+        single_event_response,
+    ]
 
-    assert isinstance(marvel_api_mock.get_random_comic(), ComicDTO)
+    event_dto = marvel_api_mock.get_random_event()
+
+    assert isinstance(event_dto, EventDTO)
+    assert event_dto.thumbnail.is_available()
+
+
+@pytest.mark.skip("Include stop iteration")
+def test_get_random_event_always_invalid(
+    marvel_api_mock, mocker, single_event_no_thumbnail_response
+):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [
+        single_event_no_thumbnail_response
+    ]
+
+    event_dto = marvel_api_mock.get_random_event()
+
+    assert isinstance(event_dto, EventDTO)
+    assert event_dto.thumbnail.is_available()
+
+
+def test_get_random_comic_valid_first_time(marvel_api_mock, mocker, single_comic_response):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [single_comic_response]
+
+    comic_dto = marvel_api_mock.get_random_comic()
+
+    assert isinstance(comic_dto, ComicDTO)
+    assert comic_dto.thumbnail.is_available()
+
+
+def test_get_random_comic_valid_second_time(
+    marvel_api_mock, mocker, single_comic_response, single_comic_no_thumbnail_response
+):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [
+        single_comic_no_thumbnail_response,
+        single_comic_response,
+    ]
+
+    comic_dto = marvel_api_mock.get_random_comic()
+
+    assert isinstance(comic_dto, ComicDTO)
+    assert comic_dto.thumbnail.is_available()
+
+
+@pytest.mark.skip("Include stop iteration")
+def test_get_random_comic_always_invalid(
+    marvel_api_mock, mocker, single_comic_no_thumbnail_response
+):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [
+        single_comic_no_thumbnail_response
+    ]
+
+    comic_dto = marvel_api_mock.get_random_comic()
+
+    assert isinstance(comic_dto, ComicDTO)
+    assert comic_dto.thumbnail.is_available()
+
+
+def test_get_random_character_valid_first_time(marvel_api_mock, mocker, single_character_response):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [single_character_response]
+
+    character_dto = marvel_api_mock.get_random_character()
+
+    assert isinstance(character_dto, CharacterDTO)
+    assert character_dto.thumbnail.is_available()
+
+
+def test_get_random_character_valid_second_time(
+    marvel_api_mock, mocker, single_character_response, single_character_no_thumbnail_response
+):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [
+        single_character_no_thumbnail_response,
+        single_character_response,
+    ]
+
+    character_dto = marvel_api_mock.get_random_character()
+
+    assert isinstance(character_dto, CharacterDTO)
+    assert character_dto.thumbnail.is_available()
+
+
+@pytest.mark.skip("Include stop iteration")
+def test_get_random_character_always_invalid(
+    marvel_api_mock, mocker, single_character_no_thumbnail_response
+):
+    mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
+    marvel_api_mock._get_random_resource_response.side_effect = [
+        single_character_no_thumbnail_response
+    ]
+
+    character_dto = marvel_api_mock.get_random_character()
+
+    assert isinstance(character_dto, CharacterDTO)
+    assert character_dto.thumbnail.is_available()

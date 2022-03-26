@@ -68,20 +68,7 @@ def comics_job_no_image_first_time(mocker, valid_comic, invalid_comic):
     return ComicsJob()
 
 
-def test_get_random_comic(comics_job):
-    comic = comics_job._get_random_comic()
-
-    assert comic.thumbnail.is_available()
-
-
-def test_get_random_comic_first_invalid(comics_job_no_image_first_time):
-
-    comic = comics_job_no_image_first_time._get_random_comic()
-
-    assert comic.thumbnail.is_available()
-
-
-def test_tweet(comics_job, mocker):
+def test_execute_calls(comics_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
     mocker.patch("app.telegram.api.TelegramAPI.send_message")
 

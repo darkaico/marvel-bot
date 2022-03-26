@@ -2,21 +2,18 @@ import pytest
 
 from app.marvel.constants import LinkTypeEnum
 from app.marvel.dtos import dto_builders
-from tests.fixtures import fixtures_builder
 
 
 @pytest.fixture
-def wolverine_dto():
-    wolverine_list_response = fixtures_builder.get_wolverine_list_response()
+def wolverine_dto(wolverine_response):
 
-    return dto_builders.build_character_from_api_response(wolverine_list_response)
+    return dto_builders.build_character_from_api_response(wolverine_response)
 
 
 @pytest.fixture
-def character_no_image_dto():
-    character_response = fixtures_builder.get_character_no_image_response()
+def character_no_image_dto(single_character_no_thumbnail_response):
 
-    return dto_builders.build_character_from_api_response(character_response)
+    return dto_builders.build_character_from_api_response(single_character_no_thumbnail_response)
 
 
 def test_character_no_image(character_no_image_dto):

@@ -15,6 +15,9 @@ HI_PHRASES = ["Holly Molly!", "Marvel movies time!", "Stay calm and assemble!"]
 class MarvelBot(LoggerMixin):
     def start(self):
         self._say_hi()
+        self._start_broadcast()
+
+    def _start_broadcast(self):
         self._schedule_jobs()
         self._start_jobs()
 

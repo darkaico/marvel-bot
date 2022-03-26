@@ -2,15 +2,8 @@ from .base import MarvelJob
 
 
 class ComicsJob(MarvelJob):
-    def _get_random_comic(self):
-        marvel_comic = self.marvel_api.get_random_comic()
-        if marvel_comic.thumbnail.is_available():
-            return marvel_comic
-
-        return self._get_random_comic()
-
     def execute(self):
-        marvel_comic = self._get_random_comic()
+        marvel_comic = self.marvel_api.get_random_comic()
 
         title = "🎉🎉🎉 Weekly Comic 🎉🎉🎉"
         tw_status = marvel_comic.build_twitter_status(title)
