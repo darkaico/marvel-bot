@@ -2,10 +2,10 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.core.jobs import EventsJob
-from app.marvel.api import MarvelAPI
-from app.telegram.api import TelegramAPI
-from app.twitter.api import TwitterAPI
+from marvel_bot.core.jobs import EventsJob
+from marvel_bot.marvel.api import MarvelAPI
+from marvel_bot.telegram.api import TelegramAPI
+from marvel_bot.twitter.api import TwitterAPI
 
 
 @dataclass
@@ -37,7 +37,7 @@ def valid_event():
 
 @pytest.fixture
 def mock_events_job(mocker, valid_event):
-    mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
+    mocker.patch("marvel_bot.marvel.api.MarvelAPI.get_random_event")
 
     MarvelAPI.get_random_event.side_effect = [valid_event]
 
@@ -45,8 +45,8 @@ def mock_events_job(mocker, valid_event):
 
 
 def test_events_job_execute_calls(mock_events_job, mocker):
-    mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
-    mocker.patch("app.telegram.api.TelegramAPI.send_message")
+    mocker.patch("marvel_bot.twitter.api.TwitterAPI.update_with_media")
+    mocker.patch("marvel_bot.telegram.api.TelegramAPI.send_message")
 
     mock_events_job.execute()
 

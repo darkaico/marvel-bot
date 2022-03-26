@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from app.telegram.api import TelegramAPI, TelegramConnectionException
+from marvel_bot.telegram.api import TelegramAPI, TelegramConnectionException
 from tests.conftest import MockResponse
 
 

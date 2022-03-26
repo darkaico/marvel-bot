@@ -1,26 +1,22 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Optional
 
-from app.utils import string_utils
+from marvel_bot.utils import string_utils
 
 from .base import MarvelResourceDTO
 
 
 @dataclass
-class CharacterComicDTO:
+class EventDTO(MarvelResourceDTO):
 
-    available: int
-
-
-@dataclass
-class CharacterDTO(MarvelResourceDTO):
-
-    name: str
-    comics: CharacterComicDTO
+    title: str
+    start: Optional[datetime]
+    end: Optional[datetime]
     description: Optional[str] = None
 
     def __str__(self):
-        return f"{self.id} - {self.name}"
+        return f"{self.id} - {self.title}"
 
     @property
     def short_description(self):
@@ -28,14 +24,14 @@ class CharacterDTO(MarvelResourceDTO):
 
     def build_twitter_status(self, title):
         status = f"{title}\n\n"
-        status += f"Did you know about {self.name} ?\n"
+        status += f'What do you know about "{self.title}" ?\n'
         status += self.build_links_label()
 
         return status
 
     def build_telegram_status(self, title):
         status = f"*{title}*\n\n"
-        status += f"Did you know about {self.name} ?\n"
+        status += f'What do you know about "{self.title}" ?\n'
         status += self.build_markdown_links()
 
         return status

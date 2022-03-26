@@ -2,7 +2,7 @@ from datetime import datetime
 
 from dacite import Config, from_dict
 
-from app.marvel.dtos import CharacterDTO, ComicDTO, EventDTO
+from marvel_bot.marvel.dtos import CharacterDTO, ComicDTO, EventDTO
 
 
 def build_character_from_api_response(api_response: dict):

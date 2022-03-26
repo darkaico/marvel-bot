@@ -1,4 +1,4 @@
-from app.utils import string_utils
+from marvel_bot.utils import string_utils
 
 
 def test_maximum():

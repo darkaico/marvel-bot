@@ -1,8 +1,8 @@
 import pytest
 import requests
 
-from app.marvel.api import MarvelAPI
-from app.marvel.dtos import CharacterDTO, ComicDTO, EventDTO
+from marvel_bot.marvel.api import MarvelAPI
+from marvel_bot.marvel.dtos import CharacterDTO, ComicDTO, EventDTO
 from tests.conftest import MockResponse
 
 

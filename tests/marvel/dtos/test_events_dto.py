@@ -1,6 +1,6 @@
 import pytest
 
-from app.marvel.dtos import dto_builders
+from marvel_bot.marvel.dtos import dto_builders
 
 
 @pytest.fixture

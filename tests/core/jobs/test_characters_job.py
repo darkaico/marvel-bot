@@ -2,10 +2,10 @@ from dataclasses import dataclass
 
 import pytest
 
-from app.core.jobs import CharactersJob
-from app.marvel.api import MarvelAPI
-from app.telegram.api import TelegramAPI
-from app.twitter.api import TwitterAPI
+from marvel_bot.core.jobs import CharactersJob
+from marvel_bot.marvel.api import MarvelAPI
+from marvel_bot.telegram.api import TelegramAPI
+from marvel_bot.twitter.api import TwitterAPI
 
 
 @dataclass
@@ -37,7 +37,7 @@ def valid_character():
 
 @pytest.fixture
 def mock_characters_job(mocker, valid_character):
-    mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
+    mocker.patch("marvel_bot.marvel.api.MarvelAPI.get_random_character")
 
     MarvelAPI.get_random_character.side_effect = [valid_character]
 
@@ -45,8 +45,8 @@ def mock_characters_job(mocker, valid_character):
 
 
 def test_character_jobs_execute_calls(mock_characters_job, mocker):
-    mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
-    mocker.patch("app.telegram.api.TelegramAPI.send_message")
+    mocker.patch("marvel_bot.twitter.api.TwitterAPI.update_with_media")
+    mocker.patch("marvel_bot.telegram.api.TelegramAPI.send_message")
 
     mock_characters_job.execute()
 

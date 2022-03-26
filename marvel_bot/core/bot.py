@@ -4,10 +4,10 @@ from datetime import datetime
 
 import schedule
 
-from app.core.jobs import CharactersJob, ComicsJob, EventsJob
-from app.telegram.api import TelegramAPI
-from app.twitter.api import TwitterAPI
-from app.utils.mixins import LoggerMixin
+from marvel_bot.core.jobs import CharactersJob, ComicsJob, EventsJob
+from marvel_bot.telegram.api import TelegramAPI
+from marvel_bot.twitter.api import TwitterAPI
+from marvel_bot.utils.mixins import LoggerMixin
 
 HI_PHRASES = ["Holly Molly!", "Marvel movies time!", "Stay calm and assemble!"]
 

@@ -1,7 +1,7 @@
 import pytest
 
-from app.marvel.constants import LinkTypeEnum
-from app.marvel.dtos import dto_builders
+from marvel_bot.marvel.constants import LinkTypeEnum
+from marvel_bot.marvel.dtos import dto_builders
 
 
 @pytest.fixture

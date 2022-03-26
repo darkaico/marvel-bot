@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from app import BASE_DIR
+from marvel_bot import BASE_DIR
 
 
 @dataclass

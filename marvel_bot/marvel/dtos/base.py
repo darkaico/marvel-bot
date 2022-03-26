@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 
-from app.marvel.constants import LinkTypeEnum
+from marvel_bot.marvel.constants import LinkTypeEnum
 
 from .common_dto import ImageDTO, MarvelLinkDTO
 

@@ -1,6 +1,6 @@
 
 start:
-	python -m app.main
+	python -m marvel_bot.main
 
 test:
 	poetry run pytest

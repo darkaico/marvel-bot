@@ -1,11 +1,11 @@
-from app import main
-from app.core.bot import MarvelBot
-from app.telegram.api import TelegramAPI
-from app.twitter.api import TwitterAPI
+from marvel_bot import main
+from marvel_bot.core.bot import MarvelBot
+from marvel_bot.telegram.api import TelegramAPI
+from marvel_bot.twitter.api import TwitterAPI
 
 
 def test_init(mocker):
-    mocker.patch("app.main.start_bot")
+    mocker.patch("marvel_bot.main.start_bot")
     mocker.patch.object(main, "__name__", "__main__")
 
     main.init()
@@ -14,10 +14,10 @@ def test_init(mocker):
 
 
 def test_start_bot(mocker):
-    mocker.patch("app.core.bot.MarvelBot._schedule_jobs")
-    mocker.patch("app.core.bot.MarvelBot._start_jobs")
-    mocker.patch("app.twitter.api.TwitterAPI.update_status")
-    mocker.patch("app.telegram.api.TelegramAPI.send_message")
+    mocker.patch("marvel_bot.core.bot.MarvelBot._schedule_jobs")
+    mocker.patch("marvel_bot.core.bot.MarvelBot._start_jobs")
+    mocker.patch("marvel_bot.twitter.api.TwitterAPI.update_status")
+    mocker.patch("marvel_bot.telegram.api.TelegramAPI.send_message")
 
     main.start_bot()
 

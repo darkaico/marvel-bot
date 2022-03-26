@@ -1,7 +1,7 @@
 import pytest
 from dacite import from_dict
 
-from app.marvel.dtos.base import MarvelResourceDTO
+from marvel_bot.marvel.dtos.base import MarvelResourceDTO
 
 
 @pytest.fixture

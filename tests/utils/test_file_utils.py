@@ -2,7 +2,7 @@ from io import BytesIO
 
 import requests
 
-from app.utils import file_utils
+from marvel_bot.utils import file_utils
 from tests.conftest import MockResponse
 
 

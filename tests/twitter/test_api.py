@@ -4,7 +4,7 @@ import pytest
 from faker import Faker
 from tweepy import API
 
-from app.twitter.api import TwitterAPI
+from marvel_bot.twitter.api import TwitterAPI
 
 fake = Faker()
 

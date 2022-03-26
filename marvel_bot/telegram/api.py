@@ -2,8 +2,8 @@ import os
 
 import requests
 
-from app.utils.mixins import LoggerMixin
-from app.utils.singleton import SingletonMixin
+from marvel_bot.utils.mixins import LoggerMixin
+from marvel_bot.utils.singleton import SingletonMixin
 
 
 class TelegramConnectionException(Exception):

@@ -1,6 +1,6 @@
 import pytest
 
-from app.core.jobs.base import MarvelJob
+from marvel_bot.core.jobs.base import MarvelJob
 
 
 @pytest.fixture

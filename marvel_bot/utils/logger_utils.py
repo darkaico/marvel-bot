@@ -1,7 +1,7 @@
 import logging
 import os
 
-from app import BASE_DIR
+from marvel_bot import BASE_DIR
 
 
 def build_logger(logger_name):

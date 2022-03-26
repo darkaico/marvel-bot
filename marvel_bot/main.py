@@ -1,6 +1,6 @@
 from sentry_sdk import capture_message
 
-from app.core.bot import MarvelBot
+from marvel_bot.core.bot import MarvelBot
 
 
 def start_bot():

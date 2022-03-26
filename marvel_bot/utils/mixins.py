@@ -1,4 +1,4 @@
-from app.utils.logger_utils import build_logger
+from marvel_bot.utils.logger_utils import build_logger
 
 
 class LoggerMixin:

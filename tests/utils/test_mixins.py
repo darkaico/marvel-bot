@@ -2,7 +2,7 @@ import logging
 
 import pytest
 
-from app.utils.mixins import LoggerMixin
+from marvel_bot.utils.mixins import LoggerMixin
 
 
 class LoggerWithName(LoggerMixin):

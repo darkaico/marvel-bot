@@ -3,7 +3,7 @@ from io import BytesIO
 import pytest
 import requests
 
-from app.marvel.dtos import ImageDTO
+from marvel_bot.marvel.dtos import ImageDTO
 from tests.conftest import MockResponse
 
 

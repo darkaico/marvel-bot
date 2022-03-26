@@ -2,7 +2,7 @@ import os
 
 import tweepy
 
-from app.utils.singleton import SingletonMixin
+from marvel_bot.utils.singleton import SingletonMixin
 
 
 class TwitterAPI(SingletonMixin):

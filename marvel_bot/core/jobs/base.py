@@ -1,10 +1,10 @@
 import calendar
 import datetime
 
-from app.marvel.api import MarvelAPI
-from app.telegram.api import TelegramAPI
-from app.twitter.api import TwitterAPI
-from app.utils.mixins import LoggerMixin
+from marvel_bot.marvel.api import MarvelAPI
+from marvel_bot.telegram.api import TelegramAPI
+from marvel_bot.twitter.api import TwitterAPI
+from marvel_bot.utils.mixins import LoggerMixin
 
 
 class MarvelJob(LoggerMixin):

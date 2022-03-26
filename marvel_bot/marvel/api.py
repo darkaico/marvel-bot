@@ -5,9 +5,9 @@ import time
 
 import requests
 
-from app import marvel as marvel_constants
-from app.marvel.dtos import CharacterDTO, ComicDTO, EventDTO, dto_builders
-from app.utils.singleton import SingletonMixin
+from marvel_bot import marvel as marvel_constants
+from marvel_bot.marvel.dtos import CharacterDTO, ComicDTO, EventDTO, dto_builders
+from marvel_bot.utils.singleton import SingletonMixin
 
 
 class MarvelConnectionException(Exception):
