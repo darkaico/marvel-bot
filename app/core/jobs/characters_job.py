@@ -2,16 +2,8 @@ from .base import MarvelJob
 
 
 class CharactersJob(MarvelJob):
-    def _get_random_character(self):
-        marvel_character = self.marvel_api.get_random_character()
-
-        if marvel_character.thumbnail.is_available():
-            return marvel_character
-
-        return self._get_random_character()
-
     def execute(self):
-        marvel_character = self._get_random_character()
+        marvel_character = self.marvel_api.get_random_character()
 
         title = f"🎉🎉🎉 {self.weekday} Character 🎉🎉🎉"
         tw_status = marvel_character.build_twitter_status(title)

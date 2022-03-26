@@ -2,15 +2,8 @@ from .base import MarvelJob
 
 
 class EventsJob(MarvelJob):
-    def _get_random_event(self):
-        marvel_event = self.marvel_api.get_random_event()
-        if marvel_event.thumbnail.is_available():
-            return marvel_event
-
-        return self._get_random_event()
-
     def execute(self):
-        marvel_event = self._get_random_event()
+        marvel_event = self.marvel_api.get_random_event()
 
         title = "🎉🎉🎉 Weekly Event 🎉🎉🎉\n"
         tw_status = marvel_event.build_twitter_status(title)

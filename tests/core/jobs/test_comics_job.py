@@ -19,16 +19,6 @@ class MockAvailableThumbnail:
 
 
 @dataclass
-class MockNotAvailableThumbnail:
-
-    name: str = ""
-    image_data: object = None
-
-    def is_available(self):
-        return False
-
-
-@dataclass
 class MockComic:
 
     thumbnail: object
@@ -46,12 +36,7 @@ def valid_comic():
 
 
 @pytest.fixture
-def invalid_comic():
-    return MockComic(thumbnail=MockNotAvailableThumbnail())
-
-
-@pytest.fixture
-def comics_job(mocker, valid_comic):
+def mock_comics_job(mocker, valid_comic):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_comic")
 
     MarvelAPI.get_random_comic.side_effect = [valid_comic]
@@ -59,20 +44,11 @@ def comics_job(mocker, valid_comic):
     return ComicsJob()
 
 
-@pytest.fixture
-def comics_job_no_image_first_time(mocker, valid_comic, invalid_comic):
-    mocker.patch("app.marvel.api.MarvelAPI.get_random_comic")
-
-    MarvelAPI.get_random_comic.side_effect = [invalid_comic, valid_comic]
-
-    return ComicsJob()
-
-
-def test_execute_calls(comics_job, mocker):
+def test_comics_job_execute_calls(mock_comics_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
     mocker.patch("app.telegram.api.TelegramAPI.send_message")
 
-    comics_job.execute()
+    mock_comics_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()
     TelegramAPI.send_message.assert_called_once()

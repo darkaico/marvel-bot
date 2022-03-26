@@ -19,16 +19,6 @@ class MockAvailableThumbnail:
 
 
 @dataclass
-class MockNotAvailableThumbnail:
-
-    name: str = ""
-    image_data: object = None
-
-    def is_available(self):
-        return False
-
-
-@dataclass
 class MockCharacter:
 
     thumbnail: object
@@ -46,12 +36,7 @@ def valid_character():
 
 
 @pytest.fixture
-def invalid_character():
-    return MockCharacter(thumbnail=MockNotAvailableThumbnail())
-
-
-@pytest.fixture
-def characters_job(mocker, valid_character):
+def mock_characters_job(mocker, valid_character):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
 
     MarvelAPI.get_random_character.side_effect = [valid_character]
@@ -59,34 +44,11 @@ def characters_job(mocker, valid_character):
     return CharactersJob()
 
 
-@pytest.fixture
-def characters_job_no_image_first_time(mocker, valid_character, invalid_character):
-    mocker.patch("app.marvel.api.MarvelAPI.get_random_character")
-
-    MarvelAPI.get_random_character.side_effect = [invalid_character, valid_character]
-
-    return CharactersJob()
-
-
-def test_get_random_character_valid(characters_job):
-
-    character = characters_job._get_random_character()
-
-    assert character.thumbnail.is_available()
-
-
-def test_get_random_character_first_invalid(characters_job_no_image_first_time):
-
-    character = characters_job_no_image_first_time._get_random_character()
-
-    assert character.thumbnail.is_available()
-
-
-def test_tweet(characters_job, mocker):
+def test_character_jobs_execute_calls(mock_characters_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
     mocker.patch("app.telegram.api.TelegramAPI.send_message")
 
-    characters_job.execute()
+    mock_characters_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()
     TelegramAPI.send_message.assert_called_once()

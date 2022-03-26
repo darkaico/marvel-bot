@@ -19,16 +19,6 @@ class MockAvailableThumbnail:
 
 
 @dataclass
-class MockNotAvailableThumbnail:
-
-    name: str = ""
-    image_data: object = None
-
-    def is_available(self):
-        return False
-
-
-@dataclass
 class MockEvent:
 
     thumbnail: object
@@ -46,12 +36,7 @@ def valid_event():
 
 
 @pytest.fixture
-def invalid_event():
-    return MockEvent(thumbnail=MockNotAvailableThumbnail())
-
-
-@pytest.fixture
-def events_job(mocker, valid_event):
+def mock_events_job(mocker, valid_event):
     mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
 
     MarvelAPI.get_random_event.side_effect = [valid_event]
@@ -59,33 +44,11 @@ def events_job(mocker, valid_event):
     return EventsJob()
 
 
-@pytest.fixture
-def events_job_no_image_first_time(mocker, valid_event, invalid_event):
-    mocker.patch("app.marvel.api.MarvelAPI.get_random_event")
-
-    MarvelAPI.get_random_event.side_effect = [invalid_event, valid_event]
-
-    return EventsJob()
-
-
-def test_get_random_event(events_job):
-    event = events_job._get_random_event()
-
-    assert event.thumbnail.is_available()
-
-
-def test_get_random_event_first_invalid(events_job_no_image_first_time):
-
-    event = events_job_no_image_first_time._get_random_event()
-
-    assert event.thumbnail.is_available()
-
-
-def test_tweet(events_job, mocker):
+def test_events_job_execute_calls(mock_events_job, mocker):
     mocker.patch("app.twitter.api.TwitterAPI.update_with_media")
     mocker.patch("app.telegram.api.TelegramAPI.send_message")
 
-    events_job.execute()
+    mock_events_job.execute()
 
     TwitterAPI.update_with_media.assert_called_once()
     TelegramAPI.send_message.assert_called_once()
