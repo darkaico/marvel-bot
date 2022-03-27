@@ -18,7 +18,7 @@ class MarvelConnectionException(Exception):
 
 class MarvelAPI:
 
-    BASE_URL = "http://gateway.marvel.com/v1/public"
+    BASE_URL = "https://gateway.marvel.com/v1/public"
 
     def __init__(self, public_key: str = None, private_key: str = None):
         self.public_key = public_key or DEFAULT_MARVEL_PUBLIC_KEY

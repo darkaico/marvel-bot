@@ -43,7 +43,7 @@ def test_build_api_url(marvel_api_mock):
 
     base_url = marvel_api_mock._build_api_url("comics")
 
-    assert "http://gateway.marvel.com/v1/public/comics" in base_url
+    assert "https://gateway.marvel.com/v1/public/comics" in base_url
 
 
 def test_build_api_url_different_each_time(marvel_api_mock):
