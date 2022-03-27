@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from io import BytesIO
 
 from marvel_bot.marvel.constants import LinkTypeEnum
 from marvel_bot.utils import file_utils, string_utils
@@ -24,7 +25,7 @@ class ImageDTO:
         return self.url.rsplit("/", 1)[1]
 
     @property
-    def image_data(self):
+    def image_data(self) -> BytesIO:
         return file_utils.build_image_from_url(self.url)
 
 

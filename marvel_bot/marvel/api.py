@@ -7,24 +7,28 @@ import requests
 
 from marvel_bot import marvel as marvel_constants
 from marvel_bot.marvel.dtos import CharacterDTO, ComicDTO, EventDTO, dto_builders
-from marvel_bot.utils.singleton import SingletonMixin
+
+DEFAULT_MARVEL_PUBLIC_KEY = os.getenv("MARVEL_API_KEY")
+DEFAULT_MARVEL_PRIVATE_KEY = os.getenv("MARVEL_PRIVATE_KEY")
 
 
 class MarvelConnectionException(Exception):
     pass
 
 
-class MarvelAPI(SingletonMixin):
+class MarvelAPI:
 
     BASE_URL = "http://gateway.marvel.com/v1/public"
-    PUBLIC_KEY = os.getenv("MARVEL_API_KEY")
-    PRIVATE_KEY = os.getenv("MARVEL_PRIVATE_KEY")
+
+    def __init__(self, public_key: str = None, private_key: str = None):
+        self.public_key = public_key or DEFAULT_MARVEL_PUBLIC_KEY
+        self.private_key = private_key or DEFAULT_MARVEL_PRIVATE_KEY
 
     def _generate_ts(self) -> float:
         return time.time()
 
     def _generate_hash_token(self, ts: float) -> str:
-        return hashlib.md5(f"{ts}{self.PRIVATE_KEY}{self.PUBLIC_KEY}".encode("utf-8")).hexdigest()
+        return hashlib.md5(f"{ts}{self.private_key}{self.public_key}".encode("utf-8")).hexdigest()
 
     def _build_api_url(
         self, resource: str, limit: int = marvel_constants.DEFAULT_API_LIMIT
@@ -32,7 +36,7 @@ class MarvelAPI(SingletonMixin):
         ts = self._generate_ts()
         hash_token = self._generate_hash_token(ts)
 
-        return f"{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.PUBLIC_KEY}&limit={limit}"  # noqa: E501
+        return f"{self.BASE_URL}/{resource}?ts={ts}&hash={hash_token}&apikey={self.public_key}&limit={limit}"  # noqa: E501
 
     def get(self, resource_url: str, params: dict = None) -> dict:
         response = requests.get(resource_url, params=params)
@@ -68,32 +72,17 @@ class MarvelAPI(SingletonMixin):
 
         return json_resource_response
 
-    def get_random_character(self, include_thumbnail: bool = True) -> CharacterDTO:
+    def get_random_character(self) -> CharacterDTO:
         json_response = self._get_random_resource_response("characters")
 
-        marvel_character = dto_builders.build_character_from_api_response(json_response)
+        return dto_builders.build_character_from_api_response(json_response)
 
-        if include_thumbnail and not marvel_character.thumbnail.is_available():
-            return self.get_random_character()
-
-        return marvel_character
-
-    def get_random_comic(self, include_thumbnail: bool = True) -> ComicDTO:
+    def get_random_comic(self) -> ComicDTO:
         json_response = self._get_random_resource_response("comics")
 
-        marvel_comic = dto_builders.build_comic_from_api_response(json_response)
+        return dto_builders.build_comic_from_api_response(json_response)
 
-        if include_thumbnail and not marvel_comic.thumbnail.is_available():
-            return self.get_random_comic()
-
-        return marvel_comic
-
-    def get_random_event(self, include_thumbnail: bool = True) -> EventDTO:
+    def get_random_event(self) -> EventDTO:
         json_response = self._get_random_resource_response("events")
 
-        marvel_event = dto_builders.build_event_from_api_response(json_response)
-
-        if include_thumbnail and not marvel_event.thumbnail.is_available():
-            return self.get_random_event()
-
-        return marvel_event
+        return dto_builders.build_event_from_api_response(json_response)
