@@ -7,7 +7,7 @@ and broadcaste information into Twitter and a Telegram channel
 
 ## Twitter Profile
 
-Could it be see in action [here](https://twitter.com/marvelibot)
+See it in action and follow [here](https://twitter.com/marvelibot) !
 
 ## Telegram Channel
 
@@ -18,6 +18,7 @@ Join in this [link](https://t.me/marveldata)
 - [Tweepy](https://www.tweepy.org/): For Twitter posts and interactions
 - [Requests](https://requests.readthedocs.io/en/master/): for Marvel API fetch and Telegram calls.
 - [Dacite](https://github.com/konradhalas/dacite): for API responses to dataclasses objects
+- [Schedule](https://schedule.readthedocs.io/en/stable/) for scheduling jobs at certain time.
 - [Python dotenv](https://github.com/theskumar/python-dotenv): simplifies env var uses.
 - [Pytest](https://docs.pytest.org/en/latest/): just it, test it.
 
