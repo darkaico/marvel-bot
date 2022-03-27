@@ -1,11 +1,11 @@
-import factory
 import datetime
+
+import factory
+from factory.fuzzy import FuzzyChoice
+
 from marvel_bot.marvel.constants import LinkTypeEnum
 from marvel_bot.marvel.dtos import CharacterDTO, ComicDTO, EventDTO, ImageDTO
 from marvel_bot.marvel.dtos.common_dto import MarvelLinkDTO
-
-from factory.fuzzy import FuzzyChoice
-from unittest.mock import patch
 
 
 class MarvelLinkDTOFactory(factory.Factory):
@@ -24,7 +24,7 @@ class ImageDTOFactory(factory.Factory):
     extension = factory.Faker("file_extension", category="image")
 
 
-class ImageDTONoThumbnailFactory(ImageDTO):
+class ImageDTONoThumbnailFactory(ImageDTOFactory):
     path = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
 
 

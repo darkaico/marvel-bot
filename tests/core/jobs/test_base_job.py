@@ -3,11 +3,20 @@ from unittest.mock import patch
 import pytest
 
 from marvel_bot.core.jobs.base import MarvelJob
+from marvel_bot.core.jobs.characters_job import CharactersJob
+from marvel_bot.marvel.api import MarvelAPI
+from marvel_bot.marvel.dtos import CharacterDTO
+from tests.factories import CharacterDTOFactory, ImageDTONoThumbnailFactory
 
 
 @pytest.fixture
 def mock_marvel_job():
     return MarvelJob()
+
+
+@pytest.fixture
+def mock_character_marvel_job():
+    return CharactersJob()
 
 
 def test_execute_should_be_implemented(mock_marvel_job):
@@ -47,33 +56,49 @@ def test_implementation_with_no_get_resource():
         marvel_job.get_resource()
 
 
-# def test_get_random_resource_valid_first_time(mocker, mock_marvel_job):
-#     mocker.patch.object(mock_marvel_job, "get_resource")
-#     mock_marvel_job.get_resource.side_effect = [valid_resrouce]
-#     random_resource_dto = mock_marvel_job.get_random_resource()
-
-#     assert isinstance(random_resource_dto, MarvelResourceDTO)
-#     assert random_resource_dto.thumbnail.is_available()
+@pytest.fixture
+def mock_chracter():
+    return CharacterDTOFactory()
 
 
-# def test_get_random_resource_valid_second_time(mock_marvel_job):
-
-#     random_resource_dto = mock_marvel_job.get_random_resource()
-
-#     assert isinstance(random_resource_dto, MarvelResourceDTO)
-#     assert random_resource_dto.thumbnail.is_available()
+@pytest.fixture
+def mock_chracter_with_no_thumbnail():
+    return CharacterDTOFactory(thumbnail=ImageDTONoThumbnailFactory())
 
 
-# @pytest.mark.skip("Include stop iteration")
-# def test_get_random_comic_always_invalid(
-#     marvel_api_mock, mocker, single_comic_no_thumbnail_response
-# ):
-#     mocker.patch.object(marvel_api_mock, "_get_random_resource_response")
-#     marvel_api_mock._get_random_resource_response.side_effect = [
-#         single_comic_no_thumbnail_response
-#     ]
+def test_get_random_resource_valid_first_time(mocker, mock_character_marvel_job, mock_chracter):
+    mocker.patch.object(MarvelAPI, "get_random_character")
+    MarvelAPI.get_random_character.side_effect = [mock_chracter]
 
-#     comic_dto = marvel_api_mock.get_random_comic()
+    random_resource_dto = mock_character_marvel_job.get_random_resource()
 
-#     assert isinstance(comic_dto, ComicDTO)
-#     assert comic_dto.thumbnail.is_available()
+    assert isinstance(random_resource_dto, CharacterDTO)
+    assert random_resource_dto.thumbnail.is_available()
+
+
+def test_get_random_resource_valid_second_time(
+    mocker, mock_character_marvel_job, mock_chracter, mock_chracter_with_no_thumbnail
+):
+    mocker.patch.object(MarvelAPI, "get_random_character")
+    MarvelAPI.get_random_character.side_effect = [mock_chracter_with_no_thumbnail, mock_chracter]
+
+    random_resource_dto = mock_character_marvel_job.get_random_resource()
+
+    assert isinstance(random_resource_dto, CharacterDTO)
+    assert random_resource_dto.thumbnail.is_available()
+
+
+@pytest.mark.skip("Include stop iteration")
+def test_get_random_resource_always_invalid(
+    mocker, mock_character_marvel_job, mock_chracter_with_no_thumbnail
+):
+    mocker.patch.object(MarvelAPI, "get_random_character")
+    MarvelAPI.get_random_character.side_effect = [
+        mock_chracter_with_no_thumbnail,
+        mock_chracter_with_no_thumbnail,
+    ]
+
+    random_resource_dto = mock_character_marvel_job.get_random_resource()
+
+    assert isinstance(random_resource_dto, CharacterDTO)
+    assert random_resource_dto.thumbnail.is_available()
