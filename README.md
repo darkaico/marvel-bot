@@ -22,10 +22,6 @@ Join in this [link](https://t.me/marveldata)
 - [Python dotenv](https://github.com/theskumar/python-dotenv): simplifies env var uses.
 - [Pytest](https://docs.pytest.org/en/latest/): just it, test it.
 
-## Extras
-
-I added Sentry to the project for monitorizing more info [here](https://docs.sentry.io/platforms/python/)
-
 ## Thanks
 
 Based on the idea from @fermezz [Star Wars bot](https://github.com/fermezz/starwars-bot)
