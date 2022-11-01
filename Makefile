@@ -8,9 +8,8 @@ test:
 lint:
 	pre-commit run --all-files
 
-clean:
-	find . -iname '*.pyc' -delete
-	rm -rf .pytest_cache
+clean: ## Remove generated files.
+	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 update-packages:
 	poetry update
