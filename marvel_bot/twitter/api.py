@@ -25,7 +25,7 @@ class TwitterAPI(SingletonMixin):
 
     def update_with_media(self, status, filename, file, in_reply_to_status_id=None):
 
-        return self.api.update_with_media(
+        return self.api.update_status_with_media(
             filename=filename,
             status=status,
             file=file,

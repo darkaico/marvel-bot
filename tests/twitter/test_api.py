@@ -29,7 +29,7 @@ def mock_tweepy_api(monkeypatch):
 
         return MockTweet(id=fake.random_int(), text=status)
 
-    def mock_update_with_media(self, status, filename, file, in_reply_to_status_id=None):
+    def update_status_with_media(self, status, filename, file, in_reply_to_status_id=None):
 
         return MockTweet(id=fake.random_int(), text=status)
 
@@ -39,7 +39,7 @@ def mock_tweepy_api(monkeypatch):
 
     monkeypatch.setattr(API, "user_timeline", mock_get_timeline)
     monkeypatch.setattr(API, "update_status", mock_update_status)
-    monkeypatch.setattr(API, "update_with_media", mock_update_with_media)
+    monkeypatch.setattr(API, "update_status_with_media", update_status_with_media)
     monkeypatch.setattr(API, "destroy_status", mock_destroy)
 
 
