@@ -56,11 +56,11 @@ def test_api_update_status():
     assert api.update_status(status).text == "Hola amigos"
 
 
-def test_api_update_with_media():
+def test_api_update_status_with_media():
     api = TwitterAPI.instance()
     status = "Twitt with media"
 
-    assert api.update_with_media(status=status, filename="", file=None).text == status
+    assert api.update_status_with_media(status=status, filename="", file=None).text == status
 
 
 def test_api_destroy_status():

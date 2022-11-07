@@ -45,7 +45,7 @@ class MarvelJob(LoggerMixin):
         self.logger.info(f"Tweet: {tw_status}")
         self.logger.info(f"Telegram: {telegram_status}")
 
-        self.twitter_api.update_with_media(
+        self.twitter_api.update_status_with_media(
             status=tw_status,
             filename=random_resource_dto.thumbnail.name,
             file=random_resource_dto.thumbnail.image_data,

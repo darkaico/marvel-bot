@@ -22,10 +22,10 @@ def mock_events_job(mocker, valid_event):
 
 
 def test_events_job_execute_calls(mock_events_job, mocker):
-    mocker.patch("marvel_bot.twitter.api.TwitterAPI.update_with_media")
+    mocker.patch("marvel_bot.twitter.api.TwitterAPI.update_status_with_media")
     mocker.patch("marvel_bot.telegram.api.TelegramAPI.send_message")
 
     mock_events_job.execute()
 
-    TwitterAPI.update_with_media.assert_called_once()
+    TwitterAPI.update_status_with_media.assert_called_once()
     TelegramAPI.send_message.assert_called_once()
