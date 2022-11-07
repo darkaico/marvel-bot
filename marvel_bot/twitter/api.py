@@ -4,10 +4,10 @@ import tweepy
 
 from marvel_bot.utils.singleton import SingletonMixin
 
-API_KEY = os.getenv("TW_API_KEY")
-SECRET_KEY = os.getenv("TW_SECRET_KEY")
-ACCESS_TOKEN = os.getenv("TW_ACCESS_TOKEN")
-ACCESS_SECRET_TOKEN = os.getenv("TW_ACCESS_TOKEN_SECRET")
+API_KEY = os.getenv("TW_API_KEY", "")
+SECRET_KEY = os.getenv("TW_SECRET_KEY", "")
+ACCESS_TOKEN = os.getenv("TW_ACCESS_TOKEN", "")
+ACCESS_SECRET_TOKEN = os.getenv("TW_ACCESS_TOKEN_SECRET", "")
 
 
 class TwitterAPI(SingletonMixin):
