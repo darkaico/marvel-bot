@@ -14,9 +14,9 @@ dacite = "^1.6"
 schedule = "^1.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.1"
+pytest = "^7.2"
 pytest-mock = "^3.10"
-faker = "^13.12"
+faker = "^15.3"
 pytest-cov = "^4.0"
 ipdb = "^0.13"
 black = "^22.10"
