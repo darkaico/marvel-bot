@@ -21,6 +21,7 @@ pytest-cov = "^4.0"
 ipdb = "^0.13"
 black = "^22.10"
 factory-boy = "^3.2"
+pre-commit = "^2.15"
 
 [build-system]
 requires = ["poetry>=0.12"]

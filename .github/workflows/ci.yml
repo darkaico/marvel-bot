@@ -92,3 +92,18 @@ jobs:
           cache-from: type=registry,ref=darkaico/marvel-bot:latest
           cache-to: type=inline
           tags: darkaico/marvel-bot:latest
+
+  notify:
+    if: contains(github.ref, 'refs/heads/main')
+    needs: [deploy]
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "Marvel Bot updated :robot:"
+          SLACK_USERNAME: "corgi-policia"
+          SLACK_ICON: https://icon-library.com/images/corgi-icon/corgi-icon-2.jpg
