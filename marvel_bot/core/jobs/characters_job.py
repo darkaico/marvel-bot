@@ -5,7 +5,7 @@ from .base import MarvelJob
 
 class CharactersJob(MarvelJob):
     def get_title(self):
-        return "🎉🎉🎉 Weekly Event 🎉🎉🎉"
+        return "🎯🎯🎯 Character of the Day 🎯🎯🎯"
 
     def get_resource(self) -> CharacterDTO:
         return self.marvel_api.get_random_character()

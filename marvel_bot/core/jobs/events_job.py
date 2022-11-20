@@ -5,7 +5,7 @@ from .base import MarvelJob
 
 class EventsJob(MarvelJob):
     def get_title(self):
-        return "🎉🎉🎉 Weekly Event 🎉🎉🎉"
+        return "🧩🧩🧩 Event of the Week 🧩🧩🧩"
 
     def get_resource(self) -> EventDTO:
         return self.marvel_api.get_random_event()

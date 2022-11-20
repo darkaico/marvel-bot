@@ -5,7 +5,7 @@ from .base import MarvelJob
 
 class ComicsJob(MarvelJob):
     def get_title(self):
-        return "🎉🎉🎉 Weekly Comic 🎉🎉🎉"
+        return "🎉🎉🎉 Comic of the week 🎉🎉🎉"
 
     def get_resource(self) -> ComicDTO:
         return self.marvel_api.get_random_comic()
