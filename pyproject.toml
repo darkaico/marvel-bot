@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "marvel-bot"
-version = "0.7.4"
+version = "0.7.7"
 description = "Simple bot that fetch data from Marvel API and tweet every X amount of time information of a random character."
 authors = ["Ariel Parra <darkaico@gmail.com>"]
 license = "Apache-2.0"
@@ -24,7 +24,7 @@ factory-boy = "^3.2"
 pre-commit = "^2.15"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.masonry.api"
 
 [tool.black]
