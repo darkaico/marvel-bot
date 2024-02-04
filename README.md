@@ -3,7 +3,7 @@
 # Marvel Bot
 
 Simple bot that fetch data from [Marvel API](https://developer.marvel.com/docs#!/public)
-and broadcaste information into Twitter and a Telegram channel
+and broadcast data into Twitter and a Telegram channel
 
 ## Twitter Profile
 
